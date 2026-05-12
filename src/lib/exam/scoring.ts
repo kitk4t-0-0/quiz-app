@@ -1,4 +1,10 @@
 /**
+ * Constants for weighted scoring
+ */
+const WEIGHTED_SCORING_BASE = 0.5; // Base for exponential penalty: (1/2)^incorrectCount
+const WEIGHTED_SCORING_ROUNDING_PRECISION = 0.05; // Round to nearest 0.05
+
+/**
  * Calculate weighted score for True/False question sets
  *
  * Formula: (1/2)^(totalQuestions - correctAnswers), rounded to nearest 0.05
@@ -29,8 +35,11 @@ export function calculateTFWeight(
   if (correctAnswers < 0 || correctAnswers > totalQuestions) return 0;
 
   const incorrectCount = totalQuestions - correctAnswers;
-  const rawWeight = 0.5 ** incorrectCount;
+  const rawWeight = WEIGHTED_SCORING_BASE ** incorrectCount;
 
-  // Round to nearest 0.05
-  return Math.round(rawWeight / 0.05) * 0.05;
+  // Round to nearest precision (0.05)
+  return (
+    Math.round(rawWeight / WEIGHTED_SCORING_ROUNDING_PRECISION) *
+    WEIGHTED_SCORING_ROUNDING_PRECISION
+  );
 }

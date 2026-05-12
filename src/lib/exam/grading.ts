@@ -180,12 +180,13 @@ export function gradeSubmission(
   for (const set of exam.questionSets) {
     const setAnswers = answersBySet.get(set.id) || [];
 
-    // Check if this is a weighted T/F set
-    const isWeightedTF =
-      set.useWeightedScoring &&
-      set.questions.every((q) => q.type === QuestionType.TRUE_FALSE);
+    // Check if this is a T/F set
+    const isTFSet = set.questions.every(
+      (q) => q.type === QuestionType.TRUE_FALSE,
+    );
 
-    if (isWeightedTF) {
+    if (isTFSet) {
+      // True/False question set
       let correctCount = 0;
       for (const answer of setAnswers) {
         const question = questionMap.get(answer.questionId);
@@ -194,19 +195,27 @@ export function gradeSubmission(
         }
       }
 
-      // Calculate weight using formula: (1/2)^(totalQuestions - correctAnswers)
       const totalQuestions = set.questions.length;
-      const weight = calculateTFWeight(totalQuestions, correctCount);
+      const setTotalPoints = set.points ?? totalQuestions; // Default to 1 point per question if not specified
 
-      // Calculate points: base points * weight
-      const setBasePoints = set.questions[0]?.points || 1;
-      rawEarnedPoints += setBasePoints * weight;
+      if (set.useWeightedScoring) {
+        // Weighted scoring: use formula (1/2)^(totalQuestions - correctAnswers)
+        const weight = calculateTFWeight(totalQuestions, correctCount);
+        rawEarnedPoints += setTotalPoints * weight;
+      } else {
+        // Non-weighted scoring: divide set points equally among questions
+        const pointsPerQuestion = setTotalPoints / totalQuestions;
+        rawEarnedPoints += correctCount * pointsPerQuestion;
+      }
     } else {
-      // Standard scoring: each question independently
+      // Standard scoring for MCQ and Short Answer: each question has individual points
       for (const answer of setAnswers) {
         const question = questionMap.get(answer.questionId);
         if (question && checkAnswer(question, answer)) {
-          rawEarnedPoints += question.points;
+          // Type guard: T/F questions don't have points field
+          if (question.type !== QuestionType.TRUE_FALSE) {
+            rawEarnedPoints += question.points;
+          }
         }
       }
     }

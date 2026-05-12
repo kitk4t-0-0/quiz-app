@@ -3,9 +3,18 @@ import type { Exam, Question } from '@/types/exam';
 /**
  * Calculate total raw points for an exam (sum of all question points)
  * Note: This is different from scoringConfig.maxScore which is the display scale
+ *
+ * For weighted scoring sets with set.points defined, uses the set's total points.
+ * Otherwise, sums individual question points.
  */
 export function calculateTotalPoints(exam: Exam): number {
   return exam.questionSets.reduce((total, set) => {
+    // If set has a points value (for weighted scoring), use that
+    if (set.points !== undefined) {
+      return total + set.points;
+    }
+
+    // Otherwise, sum individual question points
     return (
       total +
       set.questions.reduce((setTotal, question) => {

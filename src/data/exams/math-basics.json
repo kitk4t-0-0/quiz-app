@@ -92,12 +92,12 @@
       "id": "set-003",
       "title": "Đúng hoặc Sai (Có trọng số)",
       "useWeightedScoring": true,
+      "points": 1,
       "questions": [
         {
           "id": "q4",
           "type": "true_false",
           "question": "Tam giác có bốn cạnh.",
-          "points": 1,
           "correctAnswer": false,
           "explanation": "Tam giác có ba cạnh. Tứ giác có bốn cạnh."
         },
@@ -105,14 +105,12 @@
           "id": "q5",
           "type": "true_false",
           "question": "Tổng các góc trong một tam giác là 180 độ.",
-          "points": 1,
           "correctAnswer": true
         },
         {
           "id": "q6",
           "type": "true_false",
           "question": "Hình vuông là một loại hình chữ nhật.",
-          "points": 1,
           "correctAnswer": true,
           "explanation": "Hình vuông là một hình chữ nhật đặc biệt trong đó tất cả các cạnh đều bằng nhau."
         },
@@ -120,7 +118,6 @@
           "id": "q7",
           "type": "true_false",
           "question": "Số 0 là số dương.",
-          "points": 1,
           "correctAnswer": false,
           "explanation": "Số không không phải là số dương cũng không phải là số âm."
         }

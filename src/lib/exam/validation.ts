@@ -121,6 +121,13 @@ export function validateExam(exam: Exam): {
           `Question set "${set.id}" has weighted scoring enabled but contains non-True/False questions`,
         );
       }
+
+      // Ensure weighted T/F sets have set-level points defined
+      if (set.points === undefined || set.points <= 0) {
+        errors.push(
+          `Question set "${set.id}" uses weighted scoring but does not have a valid 'points' value defined at the set level`,
+        );
+      }
     }
   }
 

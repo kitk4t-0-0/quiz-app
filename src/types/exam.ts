@@ -23,15 +23,16 @@ export { QuestionType } from './question';
  *
  * Weighted Scoring for True/False Questions:
  * When useWeightedScoring is true, uses formula: (1/2)^(totalQuestions - correctAnswers), rounded to 0.05
+ * The 'points' field represents the total points for the ENTIRE set (not per question).
  *
- * Example for 4 questions:
- * - 4 correct = (1/2)^0 = 1.0
- * - 3 correct = (1/2)^1 = 0.5
- * - 2 correct = (1/2)^2 = 0.25
- * - 1 correct = (1/2)^3 = 0.125 → rounds to 0.10
- * - 0 correct = (1/2)^4 = 0.0625 → rounds to 0.05
+ * Example for 4 questions worth 1 point total:
+ * - 4 correct = (1/2)^0 = 1.0 → 1.0 * 1 point = 1.0 points
+ * - 3 correct = (1/2)^1 = 0.5 → 0.5 * 1 point = 0.5 points
+ * - 2 correct = (1/2)^2 = 0.25 → 0.25 * 1 point = 0.25 points
+ * - 1 correct = (1/2)^3 = 0.125 → 0.10 * 1 point = 0.10 points (rounded)
+ * - 0 correct = (1/2)^4 = 0.0625 → 0.05 * 1 point = 0.05 points (rounded)
  *
- * When false, uses standard scoring: (correctAnswers / totalQuestions) * points
+ * When false, uses standard scoring: each question's individual points
  */
 export const questionSetSchema = z.object({
   id: z.string(),
@@ -47,6 +48,13 @@ export const questionSetSchema = z.object({
     .optional()
     .default(true)
     .describe('Use weighted scoring formula for T/F questions (default: true)'),
+  points: z
+    .number()
+    .positive()
+    .optional()
+    .describe(
+      'Total points for the entire set (used with weighted scoring). If not specified, sums individual question points.',
+    ),
 });
 
 export type QuestionSet = z.infer<typeof questionSetSchema>;

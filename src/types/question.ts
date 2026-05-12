@@ -52,15 +52,18 @@ export type MCQQuestion = z.infer<typeof mcqQuestionSchema>;
 
 /**
  * True/False Question with optional context
+ * Note: When used in weighted scoring sets, points come from the set level, not individual questions
  */
-export const trueFalseQuestionSchema = baseQuestionSchema.extend({
-  type: z.literal(QuestionType.TRUE_FALSE),
-  correctAnswer: z.boolean(),
-  context: z
-    .string()
-    .optional()
-    .describe('Optional story/context for the question'),
-});
+export const trueFalseQuestionSchema = baseQuestionSchema
+  .omit({ points: true })
+  .extend({
+    type: z.literal(QuestionType.TRUE_FALSE),
+    correctAnswer: z.boolean(),
+    context: z
+      .string()
+      .optional()
+      .describe('Optional story/context for the question'),
+  });
 
 export type TrueFalseQuestion = z.infer<typeof trueFalseQuestionSchema>;
 

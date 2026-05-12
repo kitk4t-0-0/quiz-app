@@ -96,12 +96,12 @@
       "title": "Đúng hoặc Sai (Tính điểm có trọng số)",
       "context": "Đọc các phát biểu sau về các khái niệm lập trình và xác định xem chúng đúng hay sai.",
       "useWeightedScoring": true,
+      "points": 1,
       "questions": [
         {
           "id": "q3",
           "type": "true_false",
           "question": "Ngăn xếp (Stack) tuân theo nguyên tắc FIFO (First In First Out).",
-          "points": 1,
           "correctAnswer": false,
           "explanation": "Ngăn xếp tuân theo LIFO (Last In First Out), không phải FIFO. FIFO được sử dụng bởi hàng đợi (Queue)."
         },
@@ -109,7 +109,6 @@
           "id": "q4",
           "type": "true_false",
           "question": "Trong lập trình hướng đối tượng, kế thừa cho phép một lớp kế thừa các thuộc tính từ lớp khác.",
-          "points": 1,
           "correctAnswer": true,
           "explanation": "Kế thừa là một khái niệm OOP cơ bản cho phép tái sử dụng mã bằng cách kế thừa các thuộc tính và phương thức từ lớp cha."
         },
@@ -117,7 +116,6 @@
           "id": "q5",
           "type": "true_false",
           "question": "JavaScript là một ngôn ngữ biên dịch.",
-          "points": 1,
           "correctAnswer": false,
           "explanation": "JavaScript là một ngôn ngữ thông dịch, mặc dù các engine hiện đại sử dụng biên dịch JIT (Just-In-Time)."
         },
@@ -125,7 +123,6 @@
           "id": "q6",
           "type": "true_false",
           "question": "RAM là một loại bộ nhớ lưu trữ vĩnh viễn.",
-          "points": 1,
           "correctAnswer": false,
           "explanation": "RAM là bộ nhớ tạm thời mất dữ liệu khi tắt nguồn. Bộ nhớ lưu trữ vĩnh viễn bao gồm HDD và SSD."
         }
