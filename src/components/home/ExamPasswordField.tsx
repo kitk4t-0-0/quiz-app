@@ -15,19 +15,19 @@ export function ExamPasswordField({
     <div className="space-y-2">
       <Label htmlFor="password" className="flex items-center gap-2">
         <Lock className="h-4 w-4" />
-        Exam Password *
+        Mật Khẩu Bài Thi *
       </Label>
       <Input
         id="password"
         type="password"
-        placeholder="Enter exam password"
+        placeholder="Nhập mật khẩu bài thi"
         value={password}
         onChange={(e) => onPasswordChange(e.target.value)}
         required
       />
       <p className="text-muted-foreground text-xs">
-        This exam is password protected. Please enter the password provided by
-        your instructor.
+        Bài thi này được bảo vệ bằng mật khẩu. Vui lòng nhập mật khẩu do giáo
+        viên cung cấp.
       </p>
     </div>
   );

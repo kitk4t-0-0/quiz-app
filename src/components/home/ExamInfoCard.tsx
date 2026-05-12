@@ -10,24 +10,24 @@ export function ExamInfoCard({ exam }: ExamInfoCardProps) {
   return (
     <div className="space-y-3 rounded-lg border bg-muted/50 p-4">
       <div>
-        <h3 className="font-semibold text-sm">Exam Information</h3>
+        <h3 className="font-semibold text-sm">Thông Tin Bài Thi</h3>
         <p className="mt-1 text-muted-foreground text-sm">{exam.description}</p>
       </div>
 
       <div className="flex flex-wrap gap-2">
         <Badge variant="secondary" className="flex items-center gap-1">
           <BookOpen className="h-3 w-3" />
-          {exam.totalQuestions} Questions
+          {exam.totalQuestions} Câu hỏi
         </Badge>
         <Badge variant="secondary" className="flex items-center gap-1">
           <Clock className="h-3 w-3" />
-          {exam.duration ? `${exam.duration} minutes` : 'Untimed'}
+          {exam.duration ? `${exam.duration} phút` : 'Không giới hạn'}
         </Badge>
-        <Badge variant="secondary">Max Score: {exam.maxScore}</Badge>
+        <Badge variant="secondary">Điểm tối đa: {exam.maxScore}</Badge>
         {exam.requirePassword && (
           <Badge variant="secondary" className="flex items-center gap-1">
             <Lock className="h-3 w-3" />
-            Password Required
+            Yêu cầu mật khẩu
           </Badge>
         )}
       </div>

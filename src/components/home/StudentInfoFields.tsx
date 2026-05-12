@@ -21,12 +21,12 @@ export function StudentInfoFields({
       <div className="space-y-2">
         <Label htmlFor="studentName" className="flex items-center gap-2">
           <User className="h-4 w-4" />
-          Student Name *
+          Họ và Tên *
         </Label>
         <Input
           id="studentName"
           type="text"
-          placeholder="Enter your full name"
+          placeholder="Nhập họ và tên đầy đủ"
           value={studentName}
           onChange={(e) => onStudentNameChange(e.target.value)}
           required
@@ -37,12 +37,12 @@ export function StudentInfoFields({
       <div className="space-y-2">
         <Label htmlFor="studentClass" className="flex items-center gap-2">
           <Users className="h-4 w-4" />
-          Class *
+          Lớp *
         </Label>
         <Input
           id="studentClass"
           type="text"
-          placeholder="e.g., 10A, CS-2024, Grade 12"
+          placeholder="Ví dụ: 10A, CS-2024"
           value={studentClass}
           onChange={(e) => onStudentClassChange(e.target.value)}
           required

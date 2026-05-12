@@ -17,7 +17,7 @@ export function ExamSelector({
     <div className="space-y-2">
       <Label htmlFor="examSelect" className="flex items-center gap-2">
         <BookOpen className="h-4 w-4" />
-        Select Exam *
+        Chọn Bộ Đề *
       </Label>
       <select
         id="examSelect"
@@ -26,7 +26,7 @@ export function ExamSelector({
         onChange={(e) => onExamChange(e.target.value)}
         required
       >
-        <option value="">-- Select an exam --</option>
+        <option value="">-- Chọn bộ đề --</option>
         {exams.map((exam) => (
           <option key={exam.id} value={exam.id}>
             {exam.name} ({exam.course})

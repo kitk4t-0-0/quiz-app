@@ -6,9 +6,8 @@ export const Route = createFileRoute('/(public)/')({
   component: Home,
   head: () => {
     const seoData = seo({
-      title: 'Exam & Training Portal',
-      description: 'Enter your details to begin your exam',
-      keywords: 'exam, training, portal',
+      title: 'Luyện Tập Làm Đề',
+      description: 'Nhập thông tin của bạn để bắt đầu làm bài',
     });
 
     return {
@@ -24,10 +23,10 @@ function Home() {
       <div className="w-full max-w-2xl px-4">
         <div className="mb-8 text-center">
           <h1 className="font-bold text-4xl tracking-tight">
-            Exam & Training Portal
+            Luyện Tập Làm Đề
           </h1>
           <p className="mt-2 text-muted-foreground">
-            Enter your details to begin your exam
+            Nhập thông tin của bạn để bắt đầu làm bài.
           </p>
         </div>
         <ExamStartForm />

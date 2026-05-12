@@ -1,9 +1,9 @@
 {
   "id": "exam-002",
-  "name": "Mathematics Fundamentals",
-  "course": "MATH101",
-  "description": "Test your knowledge of basic mathematics including algebra, geometry, and arithmetic.",
-  "instructions": "Answer all questions. Calculator is not allowed. You have 30 minutes.",
+  "name": "Toán Học Cơ Bản",
+  "course": "TOÁN101",
+  "description": "Kiểm tra kiến thức của bạn về toán học cơ bản bao gồm đại số, hình học và số học.",
+  "instructions": "Trả lời tất cả các câu hỏi. Không được sử dụng máy tính. Bạn có 30 phút.",
   "security": {
     "requirePassword": false,
     "maxAttempts": 2,
@@ -27,12 +27,12 @@
   "questionSets": [
     {
       "id": "set-001",
-      "title": "Arithmetic",
+      "title": "Số Học",
       "questions": [
         {
           "id": "q1",
           "type": "short_answer",
-          "question": "What is 25 × 4?",
+          "question": "25 × 4 bằng bao nhiêu?",
           "points": 1,
           "correctAnswer": "100",
           "maxLength": 10,
@@ -43,7 +43,7 @@
         {
           "id": "q2",
           "type": "short_answer",
-          "question": "What is the square root of 144?",
+          "question": "Căn bậc hai của 144 là bao nhiêu?",
           "points": 2,
           "correctAnswer": "12",
           "maxLength": 10,
@@ -55,12 +55,12 @@
     },
     {
       "id": "set-002",
-      "title": "Algebra",
+      "title": "Đại Số",
       "questions": [
         {
           "id": "q3",
           "type": "mcq",
-          "question": "If x + 5 = 12, what is the value of x?",
+          "question": "Nếu x + 5 = 12, giá trị của x là bao nhiêu?",
           "points": 2,
           "options": [
             {
@@ -90,39 +90,39 @@
     },
     {
       "id": "set-003",
-      "title": "True or False (Weighted)",
+      "title": "Đúng hoặc Sai (Có trọng số)",
       "useWeightedScoring": true,
       "questions": [
         {
           "id": "q4",
           "type": "true_false",
-          "question": "A triangle has four sides.",
+          "question": "Tam giác có bốn cạnh.",
           "points": 1,
           "correctAnswer": false,
-          "explanation": "A triangle has three sides. A quadrilateral has four sides."
+          "explanation": "Tam giác có ba cạnh. Tứ giác có bốn cạnh."
         },
         {
           "id": "q5",
           "type": "true_false",
-          "question": "The sum of angles in a triangle is 180 degrees.",
+          "question": "Tổng các góc trong một tam giác là 180 độ.",
           "points": 1,
           "correctAnswer": true
         },
         {
           "id": "q6",
           "type": "true_false",
-          "question": "A square is a type of rectangle.",
+          "question": "Hình vuông là một loại hình chữ nhật.",
           "points": 1,
           "correctAnswer": true,
-          "explanation": "A square is a special rectangle where all sides are equal."
+          "explanation": "Hình vuông là một hình chữ nhật đặc biệt trong đó tất cả các cạnh đều bằng nhau."
         },
         {
           "id": "q7",
           "type": "true_false",
-          "question": "The number 0 is positive.",
+          "question": "Số 0 là số dương.",
           "points": 1,
           "correctAnswer": false,
-          "explanation": "Zero is neither positive nor negative."
+          "explanation": "Số không không phải là số dương cũng không phải là số âm."
         }
       ]
     }
@@ -130,5 +130,10 @@
   "createdAt": "2026-05-02T10:00:00.000Z",
   "updatedAt": "2026-05-02T10:00:00.000Z",
   "isPublished": true,
-  "tags": ["mathematics", "algebra", "geometry", "beginner"]
+  "tags": [
+    "toán-học",
+    "đại-số",
+    "hình-học",
+    "cơ-bản"
+  ]
 }

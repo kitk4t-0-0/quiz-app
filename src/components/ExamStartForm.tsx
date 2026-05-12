@@ -34,9 +34,7 @@ export function ExamStartForm() {
       const data = loadExamIndex();
 
       if (data.length === 0) {
-        setError(
-          'No exams available. Please check your connection and try again.',
-        );
+        setError('Không có bài thi nào. Vui lòng kiểm tra kết nối và thử lại.');
         setLoading(false);
         return;
       }
@@ -45,7 +43,7 @@ export function ExamStartForm() {
       setLoading(false);
     } catch (error) {
       console.error('Failed to load exams:', error);
-      setError('Failed to load available exams. Please refresh the page.');
+      setError('Không thể tải danh sách bài thi. Vui lòng tải lại trang.');
       setLoading(false);
     }
   }, []);
@@ -58,29 +56,29 @@ export function ExamStartForm() {
 
     // Validation
     if (!studentName.trim()) {
-      setError('Please enter your name');
+      setError('Vui lòng nhập tên của bạn');
       return;
     }
 
     if (!studentClass.trim()) {
-      setError('Please enter your class');
+      setError('Vui lòng nhập lớp của bạn');
       return;
     }
 
     if (!selectedExamId || !selectedExam) {
-      setError('Please select an exam');
+      setError('Vui lòng chọn bài thi');
       return;
     }
 
     if (selectedExam.requirePassword && !password.trim()) {
-      setError('This exam requires a password');
+      setError('Bài thi này yêu cầu mật khẩu');
       return;
     }
 
     // Load the full exam data
     const examData = loadExam(selectedExam.file);
     if (!examData) {
-      setError('Failed to load exam data');
+      setError('Không thể tải dữ liệu bài thi');
       return;
     }
 
@@ -105,7 +103,7 @@ export function ExamStartForm() {
       <Card>
         <CardContent className="pt-6">
           <div className="text-center text-muted-foreground">
-            Loading available exams...
+            Đang tải danh sách bộ đề...
           </div>
         </CardContent>
       </Card>
@@ -115,9 +113,9 @@ export function ExamStartForm() {
   return (
     <Card className="shadow-lg">
       <CardHeader>
-        <CardTitle>Start Your Exam</CardTitle>
+        <CardTitle className="font-semibold text-xl">Bắt Đầu Bài Thi</CardTitle>
         <CardDescription>
-          Please fill in all required information before beginning
+          Vui lòng điền đầy đủ thông tin trước khi bắt đầu
         </CardDescription>
       </CardHeader>
 
@@ -166,7 +164,7 @@ export function ExamStartForm() {
             className="w-full"
             disabled={!selectedExamId || !studentName || !studentClass}
           >
-            Begin Exam
+            Bắt Đầu Thi
           </Button>
         </CardFooter>
       </form>
