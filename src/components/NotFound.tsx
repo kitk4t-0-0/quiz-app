@@ -6,7 +6,10 @@ interface NotFoundProps {
 
 export function NotFound({ error }: NotFoundProps) {
   const router = useRouter();
-  const message = error instanceof Error ? error.message : 'The page you are looking for does not exist.';
+  const message =
+    error instanceof Error
+      ? error.message
+      : 'The page you are looking for does not exist.';
 
   const handleGoBack = () => {
     if (typeof window !== 'undefined' && window.history.length > 1) {

@@ -1,4 +1,8 @@
-import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Scripts,
+} from '@tanstack/react-router';
 import { ThemeProvider } from '@/lib/theme-provider';
 import appCss from '@/styles/global.css?url';
 

@@ -5,7 +5,10 @@ interface DefaultCatchBoundaryProps {
   reset?: () => void;
 }
 
-export function DefaultCatchBoundary({ error, reset }: DefaultCatchBoundaryProps) {
+export function DefaultCatchBoundary({
+  error,
+  reset,
+}: DefaultCatchBoundaryProps) {
   const router = useRouter();
   const message = error instanceof Error ? error.message : 'Unexpected error';
   const isDev = import.meta.env.DEV;

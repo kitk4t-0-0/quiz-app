@@ -1,6 +1,12 @@
 import { ScriptOnce } from '@tanstack/react-router';
 import { createClientOnlyFn, createIsomorphicFn } from '@tanstack/react-start';
-import { createContext, type ReactNode, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { z } from 'zod/v4';
 
 const themeModeSchema = z.enum(['light', 'dark', 'auto']);
@@ -37,7 +43,12 @@ const setStoredThemeMode = createClientOnlyFn((theme: ThemeMode) => {
 
 const getSystemTheme = createIsomorphicFn()
   .server((): ResolvedTheme => 'light')
-  .client((): ResolvedTheme => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  .client(
+    (): ResolvedTheme =>
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light',
+  );
 
 const updateThemeClass = createClientOnlyFn((themeMode: ThemeMode) => {
   const root = document.documentElement;
@@ -52,12 +63,18 @@ const updateThemeClass = createClientOnlyFn((themeMode: ThemeMode) => {
 
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', newTheme === 'dark' ? THEME_COLORS.dark : THEME_COLORS.light);
+    metaThemeColor.setAttribute(
+      'content',
+      newTheme === 'dark' ? THEME_COLORS.dark : THEME_COLORS.light,
+    );
   }
 });
 
 const getNextTheme = createClientOnlyFn((current: ThemeMode): ThemeMode => {
-  const themeOrder: ThemeMode[] = getSystemTheme() === 'dark' ? ['auto', 'light', 'dark'] : ['auto', 'dark', 'light'];
+  const themeOrder: ThemeMode[] =
+    getSystemTheme() === 'dark'
+      ? ['auto', 'light', 'dark']
+      : ['auto', 'dark', 'light'];
 
   const currentIndex = themeOrder.indexOf(current);
   const nextIndex = (currentIndex + 1) % themeOrder.length;
@@ -68,16 +85,24 @@ const themeDetectorScript = (() => {
   function themeFn() {
     try {
       const storedTheme = localStorage.getItem(themeKey) || 'auto';
-      const validTheme = ['light', 'dark', 'auto'].includes(storedTheme) ? storedTheme : 'auto';
+      const validTheme = ['light', 'dark', 'auto'].includes(storedTheme)
+        ? storedTheme
+        : 'auto';
 
       if (validTheme === 'auto') {
-        const autoTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const autoTheme = window.matchMedia('(prefers-color-scheme: dark)')
+          .matches
+          ? 'dark'
+          : 'light';
         document.documentElement.classList.add(autoTheme, 'auto');
       } else {
         document.documentElement.classList.add(validTheme);
       }
     } catch (_e) {
-      const autoTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const autoTheme = window.matchMedia('(prefers-color-scheme: dark)')
+        .matches
+        ? 'dark'
+        : 'light';
       document.documentElement.classList.add(autoTheme, 'auto');
     }
   }
@@ -99,11 +124,16 @@ interface ThemeProviderProps {
 
 const getResolvedThemeFromDOM = createIsomorphicFn()
   .server((): ResolvedTheme => 'light')
-  .client((): ResolvedTheme => (document.documentElement.classList.contains('dark') ? 'dark' : 'light'));
+  .client(
+    (): ResolvedTheme =>
+      document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+  );
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [themeMode, setThemeMode] = useState<ThemeMode>(getStoredThemeMode);
-  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(getResolvedThemeFromDOM);
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(
+    getResolvedThemeFromDOM,
+  );
 
   // Sync resolved theme with DOM changes (e.g., system theme changes)
   useEffect(() => {
@@ -139,7 +169,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   };
 
   return (
-    <ThemeContext.Provider value={{ themeMode, resolvedTheme, setTheme, toggleMode }}>
+    <ThemeContext.Provider
+      value={{ themeMode, resolvedTheme, setTheme, toggleMode }}
+    >
       {/** biome-ignore lint/correctness/noChildrenProp: valid */}
       <ScriptOnce children={themeDetectorScript} />
       {children}
