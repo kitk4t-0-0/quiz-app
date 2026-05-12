@@ -5,7 +5,7 @@ import { z } from 'zod/v4';
  */
 export const QuestionType = {
   MCQ: 'mcq',
-  TRUE_FALSE: 'true_false',
+  TRUE_FALSE_SET: 'true_false_set',
   SHORT_ANSWER: 'short_answer',
 } as const;
 
@@ -19,7 +19,7 @@ const baseQuestionSchema = z.object({
   id: z.string(),
   type: z.enum([
     QuestionType.MCQ,
-    QuestionType.TRUE_FALSE,
+    QuestionType.TRUE_FALSE_SET,
     QuestionType.SHORT_ANSWER,
   ]),
   question: z.string().min(1, 'Question text is required'),
@@ -51,21 +51,40 @@ export const mcqQuestionSchema = baseQuestionSchema.extend({
 export type MCQQuestion = z.infer<typeof mcqQuestionSchema>;
 
 /**
- * True/False Question with optional context
- * Note: When used in weighted scoring sets, points come from the set level, not individual questions
+ * True/False Sub-Question (part of a True/False Set)
  */
-export const trueFalseQuestionSchema = baseQuestionSchema
-  .omit({ points: true })
-  .extend({
-    type: z.literal(QuestionType.TRUE_FALSE),
-    correctAnswer: z.boolean(),
-    context: z
-      .string()
-      .optional()
-      .describe('Optional story/context for the question'),
-  });
+export const trueFalseSubQuestionSchema = z.object({
+  id: z.string(),
+  statement: z.string().min(1, 'Statement text is required'),
+  correctAnswer: z.boolean(),
+  explanation: z.string().optional(),
+});
 
-export type TrueFalseQuestion = z.infer<typeof trueFalseQuestionSchema>;
+export type TrueFalseSubQuestion = z.infer<typeof trueFalseSubQuestionSchema>;
+
+/**
+ * True/False Question Set (composite question with multiple sub-questions)
+ * This is a single question that contains multiple true/false statements.
+ * Supports weighted scoring where incorrect answers have exponential penalty.
+ */
+export const trueFalseSetQuestionSchema = baseQuestionSchema.extend({
+  type: z.literal(QuestionType.TRUE_FALSE_SET),
+  context: z
+    .string()
+    .optional()
+    .describe('Context or instructions for the entire set'),
+  subQuestions: z
+    .array(trueFalseSubQuestionSchema)
+    .min(1, 'At least one sub-question required'),
+  useWeightedScoring: z
+    .boolean()
+    .default(true)
+    .describe(
+      'Use weighted scoring formula: (1/2)^(total - correct), rounded to 0.05',
+    ),
+});
+
+export type TrueFalseSetQuestion = z.infer<typeof trueFalseSetQuestionSchema>;
 
 /**
  * Short Answer Question (for numbers or short text)
@@ -101,7 +120,7 @@ export type ShortAnswerQuestion = z.infer<typeof shortAnswerQuestionSchema>;
  */
 export const questionSchema = z.discriminatedUnion('type', [
   mcqQuestionSchema,
-  trueFalseQuestionSchema,
+  trueFalseSetQuestionSchema,
   shortAnswerQuestionSchema,
 ]);
 
@@ -114,13 +133,13 @@ export const studentAnswerSchema = z.object({
   questionId: z.string(),
   questionType: z.enum([
     QuestionType.MCQ,
-    QuestionType.TRUE_FALSE,
+    QuestionType.TRUE_FALSE_SET,
     QuestionType.SHORT_ANSWER,
   ]),
   answer: z.union([
     z.string(), // For short answer and single MCQ
     z.array(z.string()), // For multiple choice MCQ
-    z.boolean(), // For true/false
+    z.record(z.string(), z.boolean()), // For true/false set: { "subQuestionId": true/false }
   ]),
   timeSpent: z.number().optional().describe('Time spent in seconds'),
   flagged: z.boolean().default(false),

@@ -6,7 +6,8 @@ import type {
   SecurityConfig,
   ShortAnswerQuestion,
   TimeConfig,
-  TrueFalseQuestion,
+  TrueFalseSetQuestion,
+  TrueFalseSubQuestion,
 } from '@/types/exam';
 import { QuestionType } from '@/types/exam';
 import { generateEncryptionKey, hashPassword } from '../crypto';
@@ -34,22 +35,40 @@ export function createMCQQuestion(
 }
 
 /**
- * Create a new True/False question
+ * Create a new True/False sub-question
  */
-export function createTrueFalseQuestion(
-  data: Partial<TrueFalseQuestion> & {
-    question: string;
+export function createTrueFalseSubQuestion(
+  data: Partial<TrueFalseSubQuestion> & {
+    statement: string;
     correctAnswer: boolean;
   },
-): TrueFalseQuestion {
+): TrueFalseSubQuestion {
   return {
     id: data.id || generateId(),
-    type: QuestionType.TRUE_FALSE,
+    statement: data.statement,
+    correctAnswer: data.correctAnswer,
+    explanation: data.explanation,
+  };
+}
+
+/**
+ * Create a new True/False Set question
+ */
+export function createTrueFalseSetQuestion(
+  data: Partial<TrueFalseSetQuestion> & {
+    question: string;
+    subQuestions: TrueFalseSubQuestion[];
+  },
+): TrueFalseSetQuestion {
+  return {
+    id: data.id || generateId(),
+    type: QuestionType.TRUE_FALSE_SET,
     question: data.question,
     points: data.points || 1,
     explanation: data.explanation,
-    correctAnswer: data.correctAnswer,
     context: data.context,
+    subQuestions: data.subQuestions,
+    useWeightedScoring: data.useWeightedScoring ?? true,
   };
 }
 
@@ -89,7 +108,6 @@ export function createQuestionSet(
     context: data.context,
     questions: data.questions,
     shuffleQuestions: data.shuffleQuestions || false,
-    useWeightedScoring: data.useWeightedScoring,
   };
 }
 

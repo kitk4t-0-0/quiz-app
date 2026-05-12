@@ -13,13 +13,17 @@ export function useExamAnswers() {
       const answer = answers[key];
       if (Array.isArray(answer)) return answer.length > 0;
       if (typeof answer === 'boolean') return true;
+      if (typeof answer === 'object' && answer !== null) {
+        // For True/False Set: check if at least one sub-question is answered
+        return Object.keys(answer).length > 0;
+      }
       return answer !== '' && answer !== null && answer !== undefined;
     }).length;
   }, [answers]);
 
   const handleAnswerChange = (
     questionId: string,
-    value: string | string[] | boolean,
+    value: string | string[] | boolean | Record<string, boolean>,
   ) => {
     setAnswers((prev) => ({
       ...prev,

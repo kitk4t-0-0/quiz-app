@@ -6,7 +6,7 @@ import type {
   QuestionSet,
   ShortAnswerQuestion,
   StudentAnswer,
-  TrueFalseQuestion,
+  TrueFalseSetQuestion,
 } from '@/types/exam';
 import { QuestionType } from '@/types/exam';
 import { calculateTotalPoints } from './helpers';
@@ -30,8 +30,8 @@ export function checkAnswer(
   switch (question.type) {
     case QuestionType.MCQ:
       return checkMCQAnswer(question, answer);
-    case QuestionType.TRUE_FALSE:
-      return checkTrueFalseAnswer(question, answer);
+    case QuestionType.TRUE_FALSE_SET:
+      return checkTrueFalseSetAnswer(question, answer);
     case QuestionType.SHORT_ANSWER:
       return checkShortAnswer(question, answer);
     default:
@@ -67,16 +67,24 @@ function checkMCQAnswer(question: MCQQuestion, answer: StudentAnswer): boolean {
 }
 
 /**
- * Check True/False answer
+ * Check True/False Set answer
  */
-function checkTrueFalseAnswer(
-  question: TrueFalseQuestion,
+function checkTrueFalseSetAnswer(
+  question: TrueFalseSetQuestion,
   answer: StudentAnswer,
 ): boolean {
-  if (typeof answer.answer !== 'boolean') {
+  // Answer should be a record of subQuestionId -> boolean
+  if (typeof answer.answer !== 'object' || Array.isArray(answer.answer)) {
     return false;
   }
-  return answer.answer === question.correctAnswer;
+
+  const answers = answer.answer as Record<string, boolean>;
+
+  // Check if all sub-questions are answered correctly
+  return question.subQuestions.every((subQ) => {
+    const studentAnswer = answers[subQ.id];
+    return studentAnswer === subQ.correctAnswer;
+  });
 }
 
 /**
@@ -180,47 +188,38 @@ export function gradeSubmission(
   for (const set of exam.questionSets) {
     const setAnswers = answersBySet.get(set.id) || [];
 
-    // Check if this is a pure T/F set (all questions are T/F)
-    const isTFSet = set.questions.every(
-      (q) => q.type === QuestionType.TRUE_FALSE,
-    );
+    // Score each question individually
+    for (const answer of setAnswers) {
+      const question = questionMap.get(answer.questionId);
+      if (!question) continue;
 
-    if (isTFSet) {
-      // True/False question set - handle as a group
-      let correctCount = 0;
+      // Handle True/False Set with weighted scoring
+      if (question.type === QuestionType.TRUE_FALSE_SET) {
+        const tfAnswer = answer.answer as Record<string, boolean>;
+        let correctCount = 0;
 
-      // Count correct answers (unanswered questions count as incorrect)
-      for (const question of set.questions) {
-        const answer = setAnswers.find((a) => a.questionId === question.id);
-        if (answer && checkAnswer(question, answer)) {
-          correctCount++;
-        }
-      }
-
-      const totalQuestions = set.questions.length;
-      const setTotalPoints = set.points ?? totalQuestions; // Default to 1 point per question if not specified
-
-      if (set.useWeightedScoring) {
-        // Weighted scoring: use formula (1/2)^(totalQuestions - correctAnswers)
-        // Unanswered questions count as incorrect
-        const weight = calculateTFWeight(totalQuestions, correctCount);
-        rawEarnedPoints += setTotalPoints * weight;
-      } else {
-        // Non-weighted scoring: divide set points equally among questions
-        // Only count answered questions that are correct
-        const pointsPerQuestion = setTotalPoints / totalQuestions;
-        rawEarnedPoints += correctCount * pointsPerQuestion;
-      }
-    } else {
-      // Mixed or non-T/F set - score each question individually
-      for (const answer of setAnswers) {
-        const question = questionMap.get(answer.questionId);
-        if (question && checkAnswer(question, answer)) {
-          // Only MCQ and Short Answer have individual points
-          // T/F questions in mixed sets should not exist (validation should catch this)
-          if (question.type !== QuestionType.TRUE_FALSE) {
-            rawEarnedPoints += question.points;
+        // Count correct sub-answers
+        for (const subQ of question.subQuestions) {
+          if (tfAnswer[subQ.id] === subQ.correctAnswer) {
+            correctCount++;
           }
+        }
+
+        const totalSubQuestions = question.subQuestions.length;
+
+        if (question.useWeightedScoring) {
+          // Weighted scoring: use formula (1/2)^(total - correct)
+          const weight = calculateTFWeight(totalSubQuestions, correctCount);
+          rawEarnedPoints += question.points * weight;
+        } else {
+          // Non-weighted scoring: divide points equally among sub-questions
+          const pointsPerSubQuestion = question.points / totalSubQuestions;
+          rawEarnedPoints += correctCount * pointsPerSubQuestion;
+        }
+      } else {
+        // Standard scoring for MCQ and Short Answer
+        if (checkAnswer(question, answer)) {
+          rawEarnedPoints += question.points;
         }
       }
     }

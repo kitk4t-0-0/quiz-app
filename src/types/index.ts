@@ -34,6 +34,8 @@ export {
   type StudentAnswer,
   shortAnswerQuestionSchema,
   studentAnswerSchema,
-  type TrueFalseQuestion,
-  trueFalseQuestionSchema,
+  type TrueFalseSetQuestion,
+  type TrueFalseSubQuestion,
+  trueFalseSetQuestionSchema,
+  trueFalseSubQuestionSchema,
 } from './question';

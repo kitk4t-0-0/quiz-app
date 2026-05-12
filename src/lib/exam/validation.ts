@@ -108,48 +108,24 @@ export function validateExam(exam: Exam): {
         optionIds.add(option.id);
       }
     }
-  }
 
-  // Validate weighted scoring sets
-  for (const set of exam.questionSets) {
-    // Check if this is a T/F set
-    const tfQuestions = set.questions.filter(
-      (q) => q.type === QuestionType.TRUE_FALSE,
-    );
-    const isTFSet = tfQuestions.length === set.questions.length;
-    const hasTFQuestions = tfQuestions.length > 0;
-
-    // Prevent mixing T/F with other question types in the same set
-    if (hasTFQuestions && !isTFSet) {
-      errors.push(
-        `Question set "${set.id}" mixes True/False questions with other question types. T/F questions must be in their own set.`,
-      );
-    }
-
-    if (set.useWeightedScoring) {
-      // Weighted scoring only applies to T/F questions
-      if (!isTFSet) {
+    // Validate True/False Set questions
+    if (question.type === QuestionType.TRUE_FALSE_SET) {
+      if (question.subQuestions.length === 0) {
         errors.push(
-          `Question set "${set.id}" has weighted scoring enabled but contains non-True/False questions`,
+          `True/False Set question "${question.id}" must have at least one sub-question`,
         );
       }
 
-      // Ensure weighted T/F sets have set-level points defined
-      if (set.points === undefined || set.points <= 0) {
-        errors.push(
-          `Question set "${set.id}" uses weighted scoring but does not have a valid 'points' value defined at the set level`,
-        );
-      }
-    }
-
-    // Validate that non-T/F questions have points
-    for (const question of set.questions) {
-      if (question.type !== QuestionType.TRUE_FALSE) {
-        if (question.points === undefined || question.points <= 0) {
+      // Check for duplicate sub-question IDs
+      const subQuestionIds = new Set<string>();
+      for (const subQ of question.subQuestions) {
+        if (subQuestionIds.has(subQ.id)) {
           errors.push(
-            `Question "${question.id}" must have a positive points value`,
+            `Duplicate sub-question ID "${subQ.id}" in question "${question.id}"`,
           );
         }
+        subQuestionIds.add(subQ.id);
       }
     }
   }

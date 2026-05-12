@@ -3,7 +3,7 @@
  */
 
 export interface AnswerState {
-  [questionId: string]: string | string[] | boolean;
+  [questionId: string]: string | string[] | boolean | Record<string, boolean>;
 }
 
 export interface ExamSession {

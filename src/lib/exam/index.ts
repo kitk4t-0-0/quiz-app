@@ -13,7 +13,8 @@ export {
   createSecurityConfig,
   createShortAnswerQuestion,
   createTimeConfig,
-  createTrueFalseQuestion,
+  createTrueFalseSetQuestion,
+  createTrueFalseSubQuestion,
 } from './factory';
 
 // Grading

@@ -79,6 +79,7 @@ function generateMetadata(exam: Exam, filename: string): ExamMetadata {
     0,
   );
 
+  // Calculate total points - all questions now have points field
   const totalPoints = exam.questionSets.reduce((total, set) => {
     return (
       total +
