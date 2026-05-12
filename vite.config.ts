@@ -1,7 +1,6 @@
 import path from 'node:path';
 import babel from '@rolldown/plugin-babel';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
-import legacy from '@vitejs/plugin-legacy';
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import dotenv from 'dotenv';
 import { nitro } from 'nitro/vite';

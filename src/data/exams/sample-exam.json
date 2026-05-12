@@ -152,10 +152,7 @@
           "question": "Giá trị của số π (pi) làm tròn đến 2 chữ số thập phân là bao nhiêu?",
           "points": 2,
           "correctAnswer": "3.14",
-          "acceptableAnswers": [
-            "3.14",
-            "3.1416"
-          ],
+          "acceptableAnswers": ["3.14", "3.1416"],
           "maxLength": 10,
           "caseSensitive": false,
           "isNumeric": true,
@@ -167,9 +164,5 @@
   "createdAt": "2026-05-01T10:00:00.000Z",
   "updatedAt": "2026-05-01T10:00:00.000Z",
   "isPublished": true,
-  "tags": [
-    "khoa-học-máy-tính",
-    "lập-trình",
-    "cơ-bản"
-  ]
+  "tags": ["khoa-học-máy-tính", "lập-trình", "cơ-bản"]
 }
