@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ThemeToggle } from "@/components/ui/theme";
 import { useTheme } from "@/contexts";
@@ -24,7 +25,12 @@ const Header = () => {
 
       <div className="container relative lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl">
         <div className="flex h-16 items-center justify-between gap-6">
-          <h1 className="font-bold text-xl">Quiz App</h1>
+          <Link
+            to="/"
+            className="font-bold text-xl transition-colors hover:text-primary"
+          >
+            Quiz App
+          </Link>
           {/* Có thể thêm theme toggle hoặc navigation ở đây */}
 
           <Suspense>

@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import Header from "@/components/layout/header";
 import { ExamResultView } from "@/components/result";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -23,9 +24,9 @@ function ResultPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Clear header and footer for result page
+  // Set header for result page
   useEffect(() => {
-    setHeader(null);
+    setHeader(<Header />);
     setFooter(null);
   }, [setHeader, setFooter]);
 
