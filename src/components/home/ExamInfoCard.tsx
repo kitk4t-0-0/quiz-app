@@ -15,19 +15,26 @@ export function ExamInfoCard({ exam }: ExamInfoCardProps) {
       </div>
 
       <div className="flex flex-wrap gap-2">
-        <Badge variant="secondary" className="flex items-center gap-1">
-          <BookOpen className="h-3 w-3" />
-          {exam.totalQuestions} Câu hỏi
+        <Badge variant="secondary" className="inline-flex items-center gap-1.5">
+          <BookOpen className="h-3.5 w-3.5" />
+          <span>{exam.totalQuestions} Câu hỏi</span>
         </Badge>
-        <Badge variant="secondary" className="flex items-center gap-1">
-          <Clock className="h-3 w-3" />
-          {exam.duration ? `${exam.duration} phút` : 'Không giới hạn'}
+        <Badge variant="secondary" className="inline-flex items-center gap-1.5">
+          <Clock className="h-3.5 w-3.5" />
+          <span>
+            {exam.duration ? `${exam.duration} phút` : 'Không giới hạn'}
+          </span>
         </Badge>
-        <Badge variant="secondary">Điểm tối đa: {exam.maxScore}</Badge>
+        <Badge variant="secondary">
+          <span>Điểm tối đa: {exam.maxScore}</span>
+        </Badge>
         {exam.requirePassword && (
-          <Badge variant="secondary" className="flex items-center gap-1">
-            <Lock className="h-3 w-3" />
-            Yêu cầu mật khẩu
+          <Badge
+            variant="secondary"
+            className="inline-flex items-center gap-1.5"
+          >
+            <Lock className="h-3.5 w-3.5" />
+            <span>Yêu cầu mật khẩu</span>
           </Badge>
         )}
       </div>

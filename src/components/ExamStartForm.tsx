@@ -12,7 +12,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import type { ExamMetadata } from '@/lib/exam';
-import { loadExamIndex } from '@/lib/exam';
+import { loadExam, loadExamIndex } from '@/lib/exam';
+import { isExamAvailable } from '@/lib/exam/validation';
 import { ExamInfoCard } from './home/ExamInfoCard';
 import { ExamPasswordField } from './home/ExamPasswordField';
 import { ExamSelector } from './home/ExamSelector';
@@ -75,8 +76,38 @@ export function ExamStartForm() {
       return;
     }
 
+    // Validate exam availability before starting
+    try {
+      const fullExam = loadExam(selectedExam.file);
+      if (!fullExam) {
+        setError('Không thể tải thông tin bài thi. Vui lòng thử lại.');
+        return;
+      }
+
+      const availabilityCheck = isExamAvailable(fullExam);
+      if (!availabilityCheck.available) {
+        setError(
+          availabilityCheck.reason ||
+            'Bài thi không khả dụng. Vui lòng liên hệ giáo viên.',
+        );
+        return;
+      }
+
+      // TODO: Verify password if required
+      // if (selectedExam.requirePassword) {
+      //   const isPasswordValid = await verifyPassword(password, fullExam.security.passwordHash);
+      //   if (!isPasswordValid) {
+      //     setError('Mật khẩu không đúng');
+      //     return;
+      //   }
+      // }
+    } catch (error) {
+      console.error('Error validating exam:', error);
+      setError('Không thể xác thực bài thi. Vui lòng thử lại.');
+      return;
+    }
+
     // Store student info and navigate to exam
-    // TODO: Verify password if required
     sessionStorage.setItem(
       'examSession',
       JSON.stringify({

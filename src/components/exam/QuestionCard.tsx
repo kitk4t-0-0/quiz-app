@@ -39,13 +39,15 @@ export function QuestionCard({
             {questionNumber}
           </div>
           <div className="min-w-0 flex-1">
-            <div className="mb-2 flex items-center gap-2">
+            <div className="flex items-center gap-2">
               <Badge variant="secondary" className="text-xs">
                 {getQuestionTypeLabel(question.type)}
               </Badge>
-              <Badge variant="outline" className="text-xs">
-                {question.points} điểm
-              </Badge>
+              {'points' in question && question.points !== undefined && (
+                <Badge variant="outline" className="text-xs">
+                  {question.points} điểm
+                </Badge>
+              )}
             </div>
           </div>
         </div>
@@ -61,7 +63,7 @@ export function QuestionCard({
       )}
 
       {/* Question Text */}
-      <div className="mb-6 pl-11">
+      <div className="mb-4 pl-11">
         <p className="font-medium text-base leading-relaxed">
           {question.question}
         </p>

@@ -15,9 +15,9 @@ export function ExamSelector({
 }: ExamSelectorProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor="examSelect" className="flex items-center gap-2">
+      <Label htmlFor="examSelect" className="inline-flex items-center gap-2">
         <BookOpen className="h-4 w-4" />
-        Chọn Bộ Đề *
+        <span>Chọn Bộ Đề *</span>
       </Label>
       <select
         id="examSelect"

@@ -19,9 +19,9 @@ export function StudentInfoFields({
     <>
       {/* Student Name */}
       <div className="space-y-2">
-        <Label htmlFor="studentName" className="flex items-center gap-2">
+        <Label htmlFor="studentName" className="inline-flex items-center gap-2">
           <User className="h-4 w-4" />
-          Họ và Tên *
+          <span>Họ và Tên *</span>
         </Label>
         <Input
           id="studentName"
@@ -35,9 +35,12 @@ export function StudentInfoFields({
 
       {/* Class */}
       <div className="space-y-2">
-        <Label htmlFor="studentClass" className="flex items-center gap-2">
+        <Label
+          htmlFor="studentClass"
+          className="inline-flex items-center gap-2"
+        >
           <Users className="h-4 w-4" />
-          Lớp *
+          <span>Lớp *</span>
         </Label>
         <Input
           id="studentClass"

@@ -3,6 +3,13 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 
+/**
+ * Constants for exam timer warnings
+ */
+const LOW_TIME_WARNING_THRESHOLD_SECONDS = 300; // 5 minutes
+const SECONDS_PER_HOUR = 3600;
+const SECONDS_PER_MINUTE = 60;
+
 interface ExamHeaderProps {
   examName: string;
   courseName: string;
@@ -20,12 +27,16 @@ export function ExamHeader({
 }: ExamHeaderProps) {
   const progress =
     totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
-  const isLowTime = timeRemaining !== undefined && timeRemaining < 300; // < 5 minutes
+  const isLowTime =
+    timeRemaining !== undefined &&
+    timeRemaining < LOW_TIME_WARNING_THRESHOLD_SECONDS;
 
   const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
+    const hours = Math.floor(seconds / SECONDS_PER_HOUR);
+    const minutes = Math.floor(
+      (seconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE,
+    );
+    const secs = seconds % SECONDS_PER_MINUTE;
 
     if (hours > 0) {
       return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;

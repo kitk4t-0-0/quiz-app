@@ -1,5 +1,4 @@
-import { AlertCircle, Send } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ExamFooterProps {
@@ -15,33 +14,20 @@ export function ExamFooter({
   onSubmit,
   isSubmitting = false,
 }: ExamFooterProps) {
-  const unansweredCount = totalQuestions - answeredQuestions;
-  const hasUnanswered = unansweredCount > 0;
-
   return (
     <div className="sticky bottom-0 border-t bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-      <div className="container py-6">
+      <div className="container py-4">
         <div className="flex flex-col gap-4">
-          {/* Warning if unanswered */}
-          {hasUnanswered && (
-            <Alert>
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
-                Bạn còn <strong>{unansweredCount}</strong> câu chưa trả lời. Bạn
-                có chắc muốn nộp bài?
-              </AlertDescription>
-            </Alert>
-          )}
-
           {/* Submit Button */}
           <div className="flex items-center justify-between gap-4">
             <div className="text-muted-foreground text-sm">
               {answeredQuestions === totalQuestions ? (
-                <span className="font-medium text-green-600 dark:text-green-400">
-                  ✓ Đã hoàn thành tất cả câu hỏi
+                <span className="inline-flex items-center gap-1.5 font-bold text-green-600 dark:text-green-400">
+                  <span>✓</span>
+                  <span>Đã hoàn thành tất cả câu hỏi</span>
                 </span>
               ) : (
-                <span>
+                <span className="font-bold">
                   Đã trả lời {answeredQuestions}/{totalQuestions} câu
                 </span>
               )}
@@ -54,15 +40,15 @@ export function ExamFooter({
               className="min-w-[200px]"
             >
               {isSubmitting ? (
-                <>
-                  <span className="mr-2 animate-spin">⏳</span>
-                  Đang nộp bài...
-                </>
+                <span className="inline-flex items-center gap-2">
+                  <span className="animate-spin">⏳</span>
+                  <span>Đang nộp bài...</span>
+                </span>
               ) : (
-                <>
-                  <Send className="mr-2 h-4 w-4" />
-                  Nộp bài
-                </>
+                <span className="inline-flex items-center gap-2">
+                  <Send className="h-4 w-4" />
+                  <span>Nộp bài</span>
+                </span>
               )}
             </Button>
           </div>

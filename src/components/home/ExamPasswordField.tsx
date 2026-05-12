@@ -13,9 +13,9 @@ export function ExamPasswordField({
 }: ExamPasswordFieldProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor="password" className="flex items-center gap-2">
+      <Label htmlFor="password" className="inline-flex items-center gap-2">
         <Lock className="h-4 w-4" />
-        Mật Khẩu Bài Thi *
+        <span>Mật Khẩu Bài Thi *</span>
       </Label>
       <Input
         id="password"

@@ -19,7 +19,7 @@ export function TrueFalseQuestion({
   const stringValue = value === null ? '' : value.toString();
 
   return (
-    <div className="flex items-start gap-4 border-b py-3 last:border-b-0">
+    <div className="flex items-center gap-4 border-b py-3 last:border-b-0">
       {/* Question Number */}
       <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-muted font-medium text-muted-foreground text-sm">
         {questionNumber}
