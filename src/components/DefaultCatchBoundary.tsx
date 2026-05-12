@@ -37,7 +37,7 @@ export function DefaultCatchBoundary({
       </div>
 
       {isDev ? (
-        <pre className="mt-4 max-w-2xl overflow-auto rounded-md border border-destructive/40 bg-destructive/5 p-3 text-left text-destructive text-xs">
+        <pre className="mt-4 max-w-2xl overflow-auto text-wrap rounded-md border border-destructive/40 bg-destructive/5 p-3 text-left text-destructive text-xs">
           {message}
         </pre>
       ) : null}
