@@ -84,7 +84,7 @@ const getNextTheme = createClientOnlyFn((current: ThemeMode): ThemeMode => {
 const themeDetectorScript = (() => {
   function themeFn() {
     try {
-      const storedTheme = localStorage.getItem(themeKey) || 'auto';
+      const storedTheme = localStorage.getItem('theme') || 'auto';
       const validTheme = ['light', 'dark', 'auto'].includes(storedTheme)
         ? storedTheme
         : 'auto';
@@ -135,9 +135,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     getResolvedThemeFromDOM,
   );
 
-  // Sync resolved theme with DOM changes (e.g., system theme changes)
+  // Initialize theme on mount - ensure DOM is in sync with stored theme
   useEffect(() => {
-    setResolvedTheme(getResolvedThemeFromDOM());
+    const storedTheme = getStoredThemeMode();
+    updateThemeClass(storedTheme);
+    setResolvedTheme(storedTheme === 'auto' ? getSystemTheme() : storedTheme);
   }, []);
 
   // Listen for system theme changes when in auto mode
@@ -165,7 +167,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   const toggleMode = () => {
     const nextTheme = getNextTheme(themeMode);
-    setThemeMode(nextTheme);
+    setTheme(nextTheme);
   };
 
   return (

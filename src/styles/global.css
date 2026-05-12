@@ -156,14 +156,27 @@
 /* ========================================
    CONTAINER UTILITY
    ======================================== */
-@utility container {
-  padding-inline: 2rem;
-  margin-inline: auto;
-  @media (width >= 1400px) {
-    max-width: 1400px;
+@layer components {
+  .container {
+    @apply mx-auto w-full px-8;
   }
-  @media (width >= 1920px) {
-    max-width: 1800px;
+
+  @screen sm {
+    .container {
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .container {
+      max-width: 1800px;
+    }
   }
 }
 
