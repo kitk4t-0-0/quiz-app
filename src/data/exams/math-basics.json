@@ -1,0 +1,134 @@
+{
+  "id": "exam-002",
+  "name": "Mathematics Fundamentals",
+  "course": "MATH101",
+  "description": "Test your knowledge of basic mathematics including algebra, geometry, and arithmetic.",
+  "instructions": "Answer all questions. Calculator is not allowed. You have 30 minutes.",
+  "security": {
+    "requirePassword": false,
+    "maxAttempts": 2,
+    "shuffleQuestions": false,
+    "shuffleOptions": true,
+    "preventCopyPaste": false,
+    "fullScreenMode": false,
+    "preventTabSwitch": false
+  },
+  "timeConfig": {
+    "duration": 30,
+    "allowLateSubmission": false
+  },
+  "scoringConfig": {
+    "maxScore": 10,
+    "passingScore": 5,
+    "showScoreImmediately": true,
+    "showCorrectAnswers": true,
+    "allowReview": true
+  },
+  "questionSets": [
+    {
+      "id": "set-001",
+      "title": "Arithmetic",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "short_answer",
+          "question": "What is 25 × 4?",
+          "points": 1,
+          "correctAnswer": "100",
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        },
+        {
+          "id": "q2",
+          "type": "short_answer",
+          "question": "What is the square root of 144?",
+          "points": 2,
+          "correctAnswer": "12",
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "set-002",
+      "title": "Algebra",
+      "questions": [
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "If x + 5 = 12, what is the value of x?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "5",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "7",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "17",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "12",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false
+        }
+      ]
+    },
+    {
+      "id": "set-003",
+      "title": "True or False (Weighted)",
+      "useWeightedScoring": true,
+      "questions": [
+        {
+          "id": "q4",
+          "type": "true_false",
+          "question": "A triangle has four sides.",
+          "points": 1,
+          "correctAnswer": false,
+          "explanation": "A triangle has three sides. A quadrilateral has four sides."
+        },
+        {
+          "id": "q5",
+          "type": "true_false",
+          "question": "The sum of angles in a triangle is 180 degrees.",
+          "points": 1,
+          "correctAnswer": true
+        },
+        {
+          "id": "q6",
+          "type": "true_false",
+          "question": "A square is a type of rectangle.",
+          "points": 1,
+          "correctAnswer": true,
+          "explanation": "A square is a special rectangle where all sides are equal."
+        },
+        {
+          "id": "q7",
+          "type": "true_false",
+          "question": "The number 0 is positive.",
+          "points": 1,
+          "correctAnswer": false,
+          "explanation": "Zero is neither positive nor negative."
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-05-02T10:00:00.000Z",
+  "updatedAt": "2026-05-02T10:00:00.000Z",
+  "isPublished": true,
+  "tags": ["mathematics", "algebra", "geometry", "beginner"]
+}

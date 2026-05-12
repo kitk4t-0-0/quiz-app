@@ -16,7 +16,6 @@ export function DefaultCatchBoundary({
   return (
     <main className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center gap-4 py-10 text-center">
       <h1 className="font-semibold text-3xl">Something went wrong</h1>
-      <p className="text-muted-foreground text-sm">{message}</p>
 
       <div className="flex flex-wrap items-center justify-center gap-2">
         {reset ? (

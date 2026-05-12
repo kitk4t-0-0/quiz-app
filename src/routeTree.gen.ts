@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from "./routes/__root";
 import { Route as publicLayoutRouteImport } from "./routes/(public)/layout";
 import { Route as publicIndexRouteImport } from "./routes/(public)/index";
 import { Route as publicSplatRouteImport } from "./routes/(public)/$$";
+import { Route as publicExamExamIdRouteImport } from "./routes/(public)/exam/$examId";
 
 const publicLayoutRoute = publicLayoutRouteImport.update({
   id: "/(public)",
@@ -27,27 +28,40 @@ const publicSplatRoute = publicSplatRouteImport.update({
   path: "/$$",
   getParentRoute: () => publicLayoutRoute,
 } as any);
+const publicExamExamIdRoute = publicExamExamIdRouteImport.update({
+  id: "/exam/$examId",
+  path: "/exam/$examId",
+  getParentRoute: () => publicLayoutRoute,
+} as any);
 
 export interface FileRoutesByFullPath {
   "/$$": typeof publicSplatRoute;
   "/": typeof publicIndexRoute;
+  "/exam/$examId": typeof publicExamExamIdRoute;
 }
 export interface FileRoutesByTo {
   "/$$": typeof publicSplatRoute;
   "/": typeof publicIndexRoute;
+  "/exam/$examId": typeof publicExamExamIdRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
   "/(public)": typeof publicLayoutRouteWithChildren;
   "/(public)/$$": typeof publicSplatRoute;
   "/(public)/": typeof publicIndexRoute;
+  "/(public)/exam/$examId": typeof publicExamExamIdRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/$$" | "/";
+  fullPaths: "/$$" | "/" | "/exam/$examId";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/$$" | "/";
-  id: "__root__" | "/(public)" | "/(public)/$$" | "/(public)/";
+  to: "/$$" | "/" | "/exam/$examId";
+  id:
+    | "__root__"
+    | "/(public)"
+    | "/(public)/$$"
+    | "/(public)/"
+    | "/(public)/exam/$examId";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
@@ -77,17 +91,26 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof publicSplatRouteImport;
       parentRoute: typeof publicLayoutRoute;
     };
+    "/(public)/exam/$examId": {
+      id: "/(public)/exam/$examId";
+      path: "/exam/$examId";
+      fullPath: "/exam/$examId";
+      preLoaderRoute: typeof publicExamExamIdRouteImport;
+      parentRoute: typeof publicLayoutRoute;
+    };
   }
 }
 
 interface publicLayoutRouteChildren {
   publicSplatRoute: typeof publicSplatRoute;
   publicIndexRoute: typeof publicIndexRoute;
+  publicExamExamIdRoute: typeof publicExamExamIdRoute;
 }
 
 const publicLayoutRouteChildren: publicLayoutRouteChildren = {
   publicSplatRoute: publicSplatRoute,
   publicIndexRoute: publicIndexRoute,
+  publicExamExamIdRoute: publicExamExamIdRoute,
 };
 
 const publicLayoutRouteWithChildren = publicLayoutRoute._addFileChildren(

@@ -6,7 +6,7 @@ import {
 import { ThemeProvider } from '@/lib/theme-provider';
 import appCss from '@/styles/global.css?url';
 
-export const Route = createRootRouteWithContext<{}>()({
+export const Route = createRootRouteWithContext<Record<string, never>>()({
   head: () => ({
     meta: [
       {

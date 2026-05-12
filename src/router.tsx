@@ -11,7 +11,6 @@ interface CreateRouterOptions<TRouteTree extends AnyRoute> {
 
 function createRouter<TRouteTree extends AnyRoute>({
   routeTree,
-  debug = false,
 }: CreateRouterOptions<TRouteTree>) {
   const router = createTanStackRouter({
     context: null,

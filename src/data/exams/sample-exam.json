@@ -1,0 +1,168 @@
+{
+  "id": "exam-001",
+  "name": "Introduction to Computer Science",
+  "course": "CS101",
+  "description": "A comprehensive quiz covering basic computer science concepts including programming, data structures, and algorithms.",
+  "instructions": "Please read each question carefully. You have 45 minutes to complete this exam. Make sure to answer all questions before submitting.",
+  "security": {
+    "requirePassword": false,
+    "maxAttempts": 3,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "preventCopyPaste": false,
+    "fullScreenMode": false,
+    "preventTabSwitch": false
+  },
+  "timeConfig": {
+    "duration": 45,
+    "allowLateSubmission": false
+  },
+  "scoringConfig": {
+    "maxScore": 10,
+    "passingScore": 5,
+    "showScoreImmediately": true,
+    "showCorrectAnswers": true,
+    "allowReview": true
+  },
+  "questionSets": [
+    {
+      "id": "set-001",
+      "title": "Multiple Choice Questions",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "What is the time complexity of binary search?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "O(n)",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "O(log n)",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "O(n²)",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "O(1)",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Binary search divides the search space in half with each iteration, resulting in O(log n) time complexity."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "Which of the following are valid Python data types?",
+          "points": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "list",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "array",
+              "isCorrect": false
+            },
+            {
+              "id": "c",
+              "text": "dict",
+              "isCorrect": true
+            },
+            {
+              "id": "d",
+              "text": "tuple",
+              "isCorrect": true
+            }
+          ],
+          "allowMultiple": true,
+          "explanation": "Python has list, dict, and tuple as built-in data types. Array is available through the array module but not a built-in type."
+        }
+      ]
+    },
+    {
+      "id": "set-002",
+      "title": "True or False (Weighted Scoring)",
+      "context": "Read the following statements about programming concepts and determine if they are true or false.",
+      "useWeightedScoring": true,
+      "questions": [
+        {
+          "id": "q3",
+          "type": "true_false",
+          "question": "A stack follows the FIFO (First In First Out) principle.",
+          "points": 1,
+          "correctAnswer": false,
+          "explanation": "A stack follows LIFO (Last In First Out), not FIFO. FIFO is used by queues."
+        },
+        {
+          "id": "q4",
+          "type": "true_false",
+          "question": "In object-oriented programming, inheritance allows a class to inherit properties from another class.",
+          "points": 1,
+          "correctAnswer": true,
+          "explanation": "Inheritance is a fundamental OOP concept that allows code reuse by inheriting properties and methods from parent classes."
+        },
+        {
+          "id": "q5",
+          "type": "true_false",
+          "question": "JavaScript is a compiled language.",
+          "points": 1,
+          "correctAnswer": false,
+          "explanation": "JavaScript is an interpreted language, though modern engines use JIT (Just-In-Time) compilation."
+        },
+        {
+          "id": "q6",
+          "type": "true_false",
+          "question": "RAM is a type of permanent storage.",
+          "points": 1,
+          "correctAnswer": false,
+          "explanation": "RAM is volatile memory that loses data when power is off. Permanent storage includes HDDs and SSDs."
+        }
+      ]
+    },
+    {
+      "id": "set-003",
+      "title": "Short Answer Questions",
+      "questions": [
+        {
+          "id": "q7",
+          "type": "short_answer",
+          "question": "What is 2^10 (2 to the power of 10)?",
+          "points": 2,
+          "correctAnswer": "1024",
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        },
+        {
+          "id": "q8",
+          "type": "short_answer",
+          "question": "What is the value of π (pi) to 2 decimal places?",
+          "points": 2,
+          "correctAnswer": "3.14",
+          "acceptableAnswers": ["3.14", "3.1416"],
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0.01
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-05-01T10:00:00.000Z",
+  "updatedAt": "2026-05-01T10:00:00.000Z",
+  "isPublished": true,
+  "tags": ["computer-science", "programming", "beginner"]
+}

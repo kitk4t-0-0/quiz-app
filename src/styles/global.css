@@ -118,7 +118,6 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
-    scroll-padding-top: 4rem;
     -webkit-top-highlight-color: transparent;
   }
 

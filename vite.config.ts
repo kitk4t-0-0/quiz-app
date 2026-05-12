@@ -1,6 +1,7 @@
 import path from 'node:path';
 import babel from '@rolldown/plugin-babel';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
+import legacy from '@vitejs/plugin-legacy';
 import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react';
 import dotenv from 'dotenv';
 import { nitro } from 'nitro/vite';
@@ -13,8 +14,11 @@ dotenv.config({
 const config = defineConfig({
   build: {
     sourcemap: true,
-    target: 'es2022',
+    target: 'es2019', // Changed from es2022 for better iOS 15 compatibility
     chunkSizeWarningLimit: 1000,
+
+    // Ensure modern syntax is transpiled for older browsers
+    cssTarget: 'safari13',
   },
   resolve: {
     tsconfigPaths: true,
@@ -46,6 +50,10 @@ const config = defineConfig({
         }),
       ],
     }),
+    // legacy({
+    //   targets: ["ios >= 14"],
+    //   additionalModernPolyfills: ["regenerator-runtime/runtime"]
+    // })
   ],
   optimizeDeps: {
     entries: ['src/**/*.{ts,tsx}'],
@@ -55,7 +63,7 @@ const config = defineConfig({
     noExternal: [],
   },
   server: {
-    allowedHosts: process.env.ALLOWED_HOSTS?.split(',') || [],
+    allowedHosts: true,
   },
 });
 
