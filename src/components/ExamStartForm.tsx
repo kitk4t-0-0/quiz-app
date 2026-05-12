@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import type { ExamMetadata } from '@/lib/exam';
-import { loadExam, loadExamIndex } from '@/lib/exam';
+import { loadExamIndex } from '@/lib/exam';
 import { ExamInfoCard } from './home/ExamInfoCard';
 import { ExamPasswordField } from './home/ExamPasswordField';
 import { ExamSelector } from './home/ExamSelector';
@@ -50,7 +50,7 @@ export function ExamStartForm() {
 
   const selectedExam = exams.find((exam) => exam.id === selectedExamId);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -75,13 +75,6 @@ export function ExamStartForm() {
       return;
     }
 
-    // Load the full exam data
-    const examData = loadExam(selectedExam.file);
-    if (!examData) {
-      setError('Không thể tải dữ liệu bài thi');
-      return;
-    }
-
     // Store student info and navigate to exam
     // TODO: Verify password if required
     sessionStorage.setItem(
@@ -94,7 +87,7 @@ export function ExamStartForm() {
       }),
     );
 
-    // Navigate to exam page (we'll create this later)
+    // Navigate to exam page immediately (no need to preload exam data)
     navigate({ to: '/exam/$examId', params: { examId: selectedExamId } });
   };
 
