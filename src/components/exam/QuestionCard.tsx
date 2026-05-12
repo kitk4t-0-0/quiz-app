@@ -21,7 +21,7 @@ export function QuestionCard({
     switch (type) {
       case 'mcq':
         return 'Trắc nghiệm';
-      case 'true_false':
+      case 'true_false_set':
         return 'Đúng/Sai';
       case 'short_answer':
         return 'Tự luận ngắn';

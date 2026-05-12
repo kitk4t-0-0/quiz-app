@@ -4,4 +4,4 @@ export { MCQQuestion } from './MCQQuestion';
 export { QuestionCard } from './QuestionCard';
 export { QuestionSetRenderer } from './QuestionSetRenderer';
 export { ShortAnswerQuestion } from './ShortAnswerQuestion';
-export { TrueFalseQuestion } from './TrueFalseQuestion';
+export { TrueFalseSetQuestion } from './TrueFalseSetQuestion';
