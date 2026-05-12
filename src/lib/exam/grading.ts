@@ -180,17 +180,19 @@ export function gradeSubmission(
   for (const set of exam.questionSets) {
     const setAnswers = answersBySet.get(set.id) || [];
 
-    // Check if this is a T/F set
+    // Check if this is a pure T/F set (all questions are T/F)
     const isTFSet = set.questions.every(
       (q) => q.type === QuestionType.TRUE_FALSE,
     );
 
     if (isTFSet) {
-      // True/False question set
+      // True/False question set - handle as a group
       let correctCount = 0;
-      for (const answer of setAnswers) {
-        const question = questionMap.get(answer.questionId);
-        if (question && checkAnswer(question, answer)) {
+
+      // Count correct answers (unanswered questions count as incorrect)
+      for (const question of set.questions) {
+        const answer = setAnswers.find((a) => a.questionId === question.id);
+        if (answer && checkAnswer(question, answer)) {
           correctCount++;
         }
       }
@@ -200,19 +202,22 @@ export function gradeSubmission(
 
       if (set.useWeightedScoring) {
         // Weighted scoring: use formula (1/2)^(totalQuestions - correctAnswers)
+        // Unanswered questions count as incorrect
         const weight = calculateTFWeight(totalQuestions, correctCount);
         rawEarnedPoints += setTotalPoints * weight;
       } else {
         // Non-weighted scoring: divide set points equally among questions
+        // Only count answered questions that are correct
         const pointsPerQuestion = setTotalPoints / totalQuestions;
         rawEarnedPoints += correctCount * pointsPerQuestion;
       }
     } else {
-      // Standard scoring for MCQ and Short Answer: each question has individual points
+      // Mixed or non-T/F set - score each question individually
       for (const answer of setAnswers) {
         const question = questionMap.get(answer.questionId);
         if (question && checkAnswer(question, answer)) {
-          // Type guard: T/F questions don't have points field
+          // Only MCQ and Short Answer have individual points
+          // T/F questions in mixed sets should not exist (validation should catch this)
           if (question.type !== QuestionType.TRUE_FALSE) {
             rawEarnedPoints += question.points;
           }

@@ -4,21 +4,29 @@ import type { Exam, Question } from '@/types/exam';
  * Calculate total raw points for an exam (sum of all question points)
  * Note: This is different from scoringConfig.maxScore which is the display scale
  *
- * For weighted scoring sets with set.points defined, uses the set's total points.
- * Otherwise, sums individual question points.
+ * For T/F sets with set.points defined, uses the set's total points.
+ * Otherwise, sums individual question points (MCQ and Short Answer).
  */
 export function calculateTotalPoints(exam: Exam): number {
   return exam.questionSets.reduce((total, set) => {
-    // If set has a points value (for weighted scoring), use that
-    if (set.points !== undefined) {
-      return total + set.points;
+    // Check if this is a T/F set
+    const isTFSet = set.questions.every((q) => q.type === 'true_false');
+
+    if (isTFSet) {
+      // For T/F sets, use set.points if defined, otherwise default to 1 point per question
+      const setPoints = set.points ?? set.questions.length;
+      return total + setPoints;
     }
 
-    // Otherwise, sum individual question points
+    // For non-T/F sets (MCQ, Short Answer), sum individual question points
     return (
       total +
       set.questions.reduce((setTotal, question) => {
-        return setTotal + question.points;
+        // Type guard: only MCQ and Short Answer have points field
+        if (question.type !== 'true_false') {
+          return setTotal + question.points;
+        }
+        return setTotal;
       }, 0)
     );
   }, 0);
