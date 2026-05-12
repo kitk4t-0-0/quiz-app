@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { loadExamById } from '@/lib/exam';
+import { useEffect, useState } from "react";
+import { loadExamById } from "@/lib/exam";
 import {
   type AnswerState,
   type ExamSession,
   getExamSession,
   saveExamSession,
-} from '@/lib/exam/session';
-import { isExamAvailable } from '@/lib/exam/validation';
-import type { Exam } from '@/types';
+} from "@/lib/exam/session";
+import { isExamAvailable } from "@/lib/exam/validation";
+import type { Exam } from "@/types";
 
 interface UseExamSessionResult {
   exam: Exam | null;
@@ -30,7 +30,7 @@ export function useExamSession(examId: string): UseExamSessionResult {
       const examData = loadExamById(examId);
 
       if (!examData) {
-        setError('Không tìm thấy bài thi. Vui lòng quay lại trang chủ.');
+        setError("Không tìm thấy bài thi. Vui lòng quay lại trang chủ.");
         setIsLoading(false);
         return;
       }
@@ -40,7 +40,7 @@ export function useExamSession(examId: string): UseExamSessionResult {
       if (!availabilityCheck.available) {
         setError(
           availabilityCheck.reason ||
-            'Bài thi không khả dụng. Vui lòng liên hệ giáo viên.',
+            "Bài thi không khả dụng. Vui lòng liên hệ giáo viên.",
         );
         setIsLoading(false);
         return;
@@ -50,7 +50,7 @@ export function useExamSession(examId: string): UseExamSessionResult {
       const examSession = getExamSession(examId);
       if (!examSession) {
         setError(
-          'Phiên làm bài không hợp lệ. Vui lòng bắt đầu lại từ trang chủ.',
+          "Phiên làm bài không hợp lệ. Vui lòng bắt đầu lại từ trang chủ.",
         );
         setIsLoading(false);
         return;
@@ -60,8 +60,8 @@ export function useExamSession(examId: string): UseExamSessionResult {
       setExam(examData);
       setIsLoading(false);
     } catch (err) {
-      console.error('Error loading exam:', err);
-      setError(err instanceof Error ? err.message : 'Không thể tải bài thi');
+      console.error("Error loading exam:", err);
+      setError(err instanceof Error ? err.message : "Không thể tải bài thi");
       setIsLoading(false);
     }
   }, [examId]);

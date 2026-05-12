@@ -1,4 +1,4 @@
-import { useRouter } from '@tanstack/react-router';
+import { useRouter } from "@tanstack/react-router";
 
 interface DefaultCatchBoundaryProps {
   error: unknown;
@@ -10,7 +10,7 @@ export function DefaultCatchBoundary({
   reset,
 }: DefaultCatchBoundaryProps) {
   const router = useRouter();
-  const message = error instanceof Error ? error.message : 'Unexpected error';
+  const message = error instanceof Error ? error.message : "Unexpected error";
   const isDev = import.meta.env.DEV;
 
   return (
@@ -29,7 +29,7 @@ export function DefaultCatchBoundary({
         ) : null}
         <button
           className="inline-flex h-9 items-center justify-center rounded-md border border-input bg-background px-4 font-medium text-foreground text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-          onClick={() => router.navigate({ to: '/' })}
+          onClick={() => router.navigate({ to: "/" })}
           type="button"
         >
           Go home

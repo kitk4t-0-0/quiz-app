@@ -1,4 +1,4 @@
-import type { Exam, Question } from '@/types/exam';
+import type { Exam, Question } from "@/types/exam";
 
 /**
  * Calculate total raw points for an exam (sum of all question points)

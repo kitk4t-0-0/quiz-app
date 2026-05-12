@@ -1,6 +1,6 @@
-import { BookOpen } from 'lucide-react';
-import { Label } from '@/components/ui/label';
-import type { ExamMetadata } from '@/lib/exam';
+import { BookOpen } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import type { ExamMetadata } from "@/lib/exam";
 
 interface ExamSelectorProps {
   exams: ExamMetadata[];

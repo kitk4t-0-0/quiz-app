@@ -1,5 +1,5 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 /**
  * Utility that merges classname for Tailwind
@@ -26,7 +26,7 @@ export const getBaseUrl = (): string => {
     return import.meta.env.VITE_APP_URL as string;
   }
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window.location.origin;
   }
 

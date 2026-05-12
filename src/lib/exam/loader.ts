@@ -1,4 +1,4 @@
-import { type Exam, examSchema } from '@/types/exam';
+import { type Exam, examSchema } from "@/types/exam";
 
 /**
  * Exam metadata for listing
@@ -23,10 +23,10 @@ export interface ExamMetadata {
  * Using 'as' assertion for better JSON handling
  */
 const examModules = import.meta.glob<{ default: unknown }>(
-  '../../data/exams/*.json',
+  "../../data/exams/*.json",
   {
     eager: true,
-    import: 'default',
+    import: "default",
   },
 );
 
@@ -45,12 +45,12 @@ function initializeExamCache(): void {
 
   try {
     for (const [path, module] of Object.entries(examModules)) {
-      const filename = path.split('/').pop() || '';
+      const filename = path.split("/").pop() || "";
 
       try {
         // When using import: 'default', module is the data directly
         const examData =
-          typeof module === 'object' && module !== null && 'default' in module
+          typeof module === "object" && module !== null && "default" in module
             ? (module as { default: unknown }).default
             : module;
 
@@ -64,7 +64,7 @@ function initializeExamCache(): void {
       }
     }
   } catch (error) {
-    console.error('Failed to initialize exam cache:', error);
+    console.error("Failed to initialize exam cache:", error);
     // If import.meta.glob fails, the cache will remain empty
     // This prevents the app from crashing
   }
@@ -93,7 +93,7 @@ function generateMetadata(exam: Exam, filename: string): ExamMetadata {
     id: exam.id,
     name: exam.name,
     course: exam.course,
-    description: exam.description || '',
+    description: exam.description || "",
     requirePassword: exam.security.requirePassword,
     duration: exam.timeConfig.duration,
     totalQuestions,

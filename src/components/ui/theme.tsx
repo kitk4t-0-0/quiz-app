@@ -1,21 +1,21 @@
-import { Laptop, Moon, Sun } from 'lucide-react';
+import { Laptop, Moon, Sun } from "lucide-react";
 
-import { Button } from './button';
+import { Button } from "./button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from './dropdown-menu';
+} from "./dropdown-menu";
 
 function ThemeToggle({
   setTheme,
   themeMode,
 }: {
-  setTheme: (theme: 'light' | 'dark' | 'auto') => void;
-  themeMode: 'light' | 'dark' | 'auto';
+  setTheme: (theme: "light" | "dark" | "auto") => void;
+  themeMode: "light" | "dark" | "auto";
 }) {
-  const handleThemeChange = (theme: 'light' | 'dark' | 'auto') => {
+  const handleThemeChange = (theme: "light" | "dark" | "auto") => {
     setTheme(theme);
   };
 
@@ -35,15 +35,15 @@ function ThemeToggle({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => handleThemeChange('light')}>
+        <DropdownMenuItem onClick={() => handleThemeChange("light")}>
           <Sun aria-hidden="true" className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleThemeChange('dark')}>
+        <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
           <Moon aria-hidden="true" className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => handleThemeChange('auto')}>
+        <DropdownMenuItem onClick={() => handleThemeChange("auto")}>
           <Laptop aria-hidden="true" className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>

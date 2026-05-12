@@ -1,6 +1,6 @@
-import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
-import type { Question } from '@/types';
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import type { Question } from "@/types";
 
 interface QuestionCardProps {
   question: Question;
@@ -19,12 +19,12 @@ export function QuestionCard({
 }: QuestionCardProps) {
   const getQuestionTypeLabel = (type: string) => {
     switch (type) {
-      case 'mcq':
-        return 'Trắc nghiệm';
-      case 'true_false_set':
-        return 'Đúng/Sai';
-      case 'short_answer':
-        return 'Tự luận ngắn';
+      case "mcq":
+        return "Trắc nghiệm";
+      case "true_false_set":
+        return "Đúng/Sai";
+      case "short_answer":
+        return "Tự luận ngắn";
       default:
         return type;
     }
@@ -43,7 +43,7 @@ export function QuestionCard({
               <Badge variant="secondary" className="text-xs">
                 {getQuestionTypeLabel(question.type)}
               </Badge>
-              {'points' in question && question.points !== undefined && (
+              {"points" in question && question.points !== undefined && (
                 <Badge variant="outline" className="text-xs">
                   {question.points} điểm
                 </Badge>

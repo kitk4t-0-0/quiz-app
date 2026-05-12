@@ -1,7 +1,7 @@
-import { AlertCircle, Clock } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import { AlertCircle, Clock } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 
 /**
  * Constants for exam timer warnings
@@ -39,9 +39,9 @@ export function ExamHeader({
     const secs = seconds % SECONDS_PER_MINUTE;
 
     if (hours > 0) {
-      return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
     }
-    return `${minutes}:${secs.toString().padStart(2, '0')}`;
+    return `${minutes}:${secs.toString().padStart(2, "0")}`;
   };
 
   return (
@@ -62,8 +62,8 @@ export function ExamHeader({
               <div
                 className={`flex items-center gap-2 rounded-lg border px-4 py-2 ${
                   isLowTime
-                    ? 'border-destructive bg-destructive/10 text-destructive'
-                    : 'bg-muted'
+                    ? "border-destructive bg-destructive/10 text-destructive"
+                    : "bg-muted"
                 }`}
               >
                 <Clock className="h-5 w-5" />

@@ -124,6 +124,39 @@
               "explanation": "Số không không phải là số dương cũng không phải là số âm."
             }
           ]
+        },
+        {
+          "id": "q5",
+          "type": "true_false_set",
+          "question": "Hình học cơ bản",
+          "context": "Xác định xem các phát biểu sau về hình học có đúng hay không.",
+          "points": 1,
+          "useWeightedScoring": true,
+          "subQuestions": [
+            {
+              "id": "q5-1",
+              "statement": "Tam giác có bốn cạnh.",
+              "correctAnswer": false,
+              "explanation": "Tam giác có ba cạnh. Tứ giác có bốn cạnh."
+            },
+            {
+              "id": "q5-2",
+              "statement": "Tổng các góc trong một tam giác là 180 độ.",
+              "correctAnswer": true
+            },
+            {
+              "id": "q5-3",
+              "statement": "Hình vuông là một loại hình chữ nhật.",
+              "correctAnswer": true,
+              "explanation": "Hình vuông là một hình chữ nhật đặc biệt trong đó tất cả các cạnh đều bằng nhau."
+            },
+            {
+              "id": "q5-4",
+              "statement": "Số 0 là số dương.",
+              "correctAnswer": false,
+              "explanation": "Số không không phải là số dương cũng không phải là số âm."
+            }
+          ]
         }
       ]
     }

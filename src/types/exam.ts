@@ -1,12 +1,12 @@
-import { z } from 'zod/v4';
+import { z } from "zod/v4";
 import {
   scoringConfigSchema,
   securityConfigSchema,
   timeConfigSchema,
-} from './exam-config';
-import { questionSchema, studentAnswerSchema } from './question';
+} from "./exam-config";
+import { questionSchema, studentAnswerSchema } from "./question";
 
-export type { ScoringConfig, SecurityConfig, TimeConfig } from './exam-config';
+export type { ScoringConfig, SecurityConfig, TimeConfig } from "./exam-config";
 export type {
   MCQQuestion,
   Question,
@@ -14,10 +14,10 @@ export type {
   StudentAnswer,
   TrueFalseSetQuestion,
   TrueFalseSubQuestion,
-} from './question';
+} from "./question";
 
 // Re-export for convenience
-export { QuestionType } from './question';
+export { QuestionType } from "./question";
 
 /**
  * Question Set (can group related questions)
@@ -28,8 +28,8 @@ export const questionSetSchema = z.object({
   context: z
     .string()
     .optional()
-    .describe('Shared context/story for all questions in this set'),
-  questions: z.array(questionSchema).min(1, 'At least one question required'),
+    .describe("Shared context/story for all questions in this set"),
+  questions: z.array(questionSchema).min(1, "At least one question required"),
   shuffleQuestions: z.boolean().default(false),
 });
 
@@ -40,8 +40,8 @@ export type QuestionSet = z.infer<typeof questionSetSchema>;
  */
 export const examSchema = z.object({
   id: z.string(),
-  name: z.string().min(1, 'Exam name is required'),
-  course: z.string().min(1, 'Course name is required'),
+  name: z.string().min(1, "Exam name is required"),
+  course: z.string().min(1, "Course name is required"),
   description: z.string().optional(),
   instructions: z.string().optional(),
 
@@ -57,7 +57,7 @@ export const examSchema = z.object({
   // Questions
   questionSets: z
     .array(questionSetSchema)
-    .min(1, 'At least one question set required'),
+    .min(1, "At least one question set required"),
 
   // Metadata
   createdAt: z.string().datetime({ offset: true }),

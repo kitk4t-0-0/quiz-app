@@ -2,31 +2,31 @@ import {
   createRootRouteWithContext,
   HeadContent,
   Scripts,
-} from '@tanstack/react-router';
-import { LayoutProvider, ThemeProvider } from '@/contexts';
-import appCss from '@/styles/global.css?url';
+} from "@tanstack/react-router";
+import { LayoutProvider, ThemeProvider } from "@/contexts";
+import appCss from "@/styles/global.css?url";
 
 export const Route = createRootRouteWithContext<Record<string, never>>()({
   head: () => ({
     meta: [
       {
-        charSet: 'utf-8',
+        charSet: "utf-8",
       },
       {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        name: "viewport",
+        content: "width=device-width, initial-scale=1",
       },
       {
-        name: 'theme-color',
-        content: '#ffffff',
+        name: "theme-color",
+        content: "#ffffff",
       },
     ],
     links: [
       {
-        rel: 'stylesheet',
+        rel: "stylesheet",
         href: appCss,
-        as: 'style',
-        type: 'text/css',
+        as: "style",
+        type: "text/css",
       },
     ],
   }),

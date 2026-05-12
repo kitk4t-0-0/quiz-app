@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useContext, useState } from 'react';
+import { createContext, type ReactNode, useContext, useState } from "react";
 
 interface LayoutContextType {
   header: ReactNode | null;
@@ -23,7 +23,7 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
 export function useLayout() {
   const context = useContext(LayoutContext);
   if (!context) {
-    throw new Error('useLayout must be used within LayoutProvider');
+    throw new Error("useLayout must be used within LayoutProvider");
   }
   return context;
 }

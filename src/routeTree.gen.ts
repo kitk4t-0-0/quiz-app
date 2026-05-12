@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from "./routes/__root";
 import { Route as publicLayoutRouteImport } from "./routes/(public)/layout";
 import { Route as publicIndexRouteImport } from "./routes/(public)/index";
 import { Route as publicSplatRouteImport } from "./routes/(public)/$$";
+import { Route as publicResultSubmissionIdRouteImport } from "./routes/(public)/result.$submissionId";
 import { Route as publicExamExamIdRouteImport } from "./routes/(public)/exam/$examId";
 
 const publicLayoutRoute = publicLayoutRouteImport.update({
@@ -28,6 +29,12 @@ const publicSplatRoute = publicSplatRouteImport.update({
   path: "/$$",
   getParentRoute: () => publicLayoutRoute,
 } as any);
+const publicResultSubmissionIdRoute =
+  publicResultSubmissionIdRouteImport.update({
+    id: "/result/$submissionId",
+    path: "/result/$submissionId",
+    getParentRoute: () => publicLayoutRoute,
+  } as any);
 const publicExamExamIdRoute = publicExamExamIdRouteImport.update({
   id: "/exam/$examId",
   path: "/exam/$examId",
@@ -38,11 +45,13 @@ export interface FileRoutesByFullPath {
   "/$$": typeof publicSplatRoute;
   "/": typeof publicIndexRoute;
   "/exam/$examId": typeof publicExamExamIdRoute;
+  "/result/$submissionId": typeof publicResultSubmissionIdRoute;
 }
 export interface FileRoutesByTo {
   "/$$": typeof publicSplatRoute;
   "/": typeof publicIndexRoute;
   "/exam/$examId": typeof publicExamExamIdRoute;
+  "/result/$submissionId": typeof publicResultSubmissionIdRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
@@ -50,18 +59,20 @@ export interface FileRoutesById {
   "/(public)/$$": typeof publicSplatRoute;
   "/(public)/": typeof publicIndexRoute;
   "/(public)/exam/$examId": typeof publicExamExamIdRoute;
+  "/(public)/result/$submissionId": typeof publicResultSubmissionIdRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/$$" | "/" | "/exam/$examId";
+  fullPaths: "/$$" | "/" | "/exam/$examId" | "/result/$submissionId";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/$$" | "/" | "/exam/$examId";
+  to: "/$$" | "/" | "/exam/$examId" | "/result/$submissionId";
   id:
     | "__root__"
     | "/(public)"
     | "/(public)/$$"
     | "/(public)/"
-    | "/(public)/exam/$examId";
+    | "/(public)/exam/$examId"
+    | "/(public)/result/$submissionId";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
@@ -91,6 +102,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof publicSplatRouteImport;
       parentRoute: typeof publicLayoutRoute;
     };
+    "/(public)/result/$submissionId": {
+      id: "/(public)/result/$submissionId";
+      path: "/result/$submissionId";
+      fullPath: "/result/$submissionId";
+      preLoaderRoute: typeof publicResultSubmissionIdRouteImport;
+      parentRoute: typeof publicLayoutRoute;
+    };
     "/(public)/exam/$examId": {
       id: "/(public)/exam/$examId";
       path: "/exam/$examId";
@@ -105,12 +123,14 @@ interface publicLayoutRouteChildren {
   publicSplatRoute: typeof publicSplatRoute;
   publicIndexRoute: typeof publicIndexRoute;
   publicExamExamIdRoute: typeof publicExamExamIdRoute;
+  publicResultSubmissionIdRoute: typeof publicResultSubmissionIdRoute;
 }
 
 const publicLayoutRouteChildren: publicLayoutRouteChildren = {
   publicSplatRoute: publicSplatRoute,
   publicIndexRoute: publicIndexRoute,
   publicExamExamIdRoute: publicExamExamIdRoute,
+  publicResultSubmissionIdRoute: publicResultSubmissionIdRoute,
 };
 
 const publicLayoutRouteWithChildren = publicLayoutRoute._addFileChildren(

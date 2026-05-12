@@ -19,7 +19,7 @@ export interface ExamSession {
  */
 export function getExamSession(examId: string): ExamSession | null {
   try {
-    const sessionData = sessionStorage.getItem('examSession');
+    const sessionData = sessionStorage.getItem("examSession");
     if (!sessionData) return null;
 
     const session: ExamSession = JSON.parse(sessionData);
@@ -34,7 +34,7 @@ export function getExamSession(examId: string): ExamSession | null {
 
     return session;
   } catch (error) {
-    console.error('Failed to parse exam session:', error);
+    console.error("Failed to parse exam session:", error);
     return null;
   }
 }
@@ -44,9 +44,9 @@ export function getExamSession(examId: string): ExamSession | null {
  */
 export function saveExamSession(session: ExamSession): void {
   try {
-    sessionStorage.setItem('examSession', JSON.stringify(session));
+    sessionStorage.setItem("examSession", JSON.stringify(session));
   } catch (error) {
-    console.error('Failed to save exam session:', error);
+    console.error("Failed to save exam session:", error);
   }
 }
 
@@ -55,9 +55,9 @@ export function saveExamSession(session: ExamSession): void {
  */
 export function clearExamSession(): void {
   try {
-    sessionStorage.removeItem('examSession');
+    sessionStorage.removeItem("examSession");
   } catch (error) {
-    console.error('Failed to clear exam session:', error);
+    console.error("Failed to clear exam session:", error);
   }
 }
 

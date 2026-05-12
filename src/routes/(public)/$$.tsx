@@ -1,7 +1,7 @@
-import { createFileRoute, useRouter } from '@tanstack/react-router';
-import { Button } from '@/components/ui/button';
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute('/(public)/$$')({
+export const Route = createFileRoute("/(public)/$$")({
   component: NotFoundPage,
 });
 
@@ -12,7 +12,7 @@ function NotFoundPage() {
     if (window.history.length > 1) {
       router.history.back();
     } else {
-      router.navigate({ to: '/' });
+      router.navigate({ to: "/" });
     }
   };
 

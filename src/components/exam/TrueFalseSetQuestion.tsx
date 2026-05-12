@@ -1,7 +1,7 @@
-import { Check, X } from 'lucide-react';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import type { TrueFalseSetQuestion as TrueFalseSetQuestionType } from '@/types';
+import { Check, X } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import type { TrueFalseSetQuestion as TrueFalseSetQuestionType } from "@/types";
 
 interface TrueFalseSetQuestionProps {
   question: TrueFalseSetQuestionType;
@@ -25,7 +25,7 @@ export function TrueFalseSetQuestion({
     <div className="space-y-3">
       {question.subQuestions.map((subQ, index) => {
         const subValue = value[subQ.id];
-        const stringValue = subValue === undefined ? '' : subValue.toString();
+        const stringValue = subValue === undefined ? "" : subValue.toString();
 
         return (
           <div
@@ -46,7 +46,7 @@ export function TrueFalseSetQuestion({
             <RadioGroup
               value={stringValue}
               onValueChange={(newValue) =>
-                handleSubQuestionChange(subQ.id, newValue === 'true')
+                handleSubQuestionChange(subQ.id, newValue === "true")
               }
               className="flex flex-shrink-0 gap-2"
             >
@@ -55,8 +55,8 @@ export function TrueFalseSetQuestion({
                 htmlFor={`${subQ.id}-true`}
                 className={`flex h-9 w-12 cursor-pointer items-center justify-center rounded-md border transition-colors ${
                   subValue === true
-                    ? 'border-green-600 bg-green-100 dark:border-green-400 dark:bg-green-900/30'
-                    : 'border-border hover:bg-accent'
+                    ? "border-green-600 bg-green-100 dark:border-green-400 dark:bg-green-900/30"
+                    : "border-border hover:bg-accent"
                 }`}
               >
                 <RadioGroupItem
@@ -67,8 +67,8 @@ export function TrueFalseSetQuestion({
                 <Check
                   className={`h-4 w-4 ${
                     subValue === true
-                      ? 'text-green-700 dark:text-green-400'
-                      : 'text-muted-foreground'
+                      ? "text-green-700 dark:text-green-400"
+                      : "text-muted-foreground"
                   }`}
                 />
               </Label>
@@ -78,8 +78,8 @@ export function TrueFalseSetQuestion({
                 htmlFor={`${subQ.id}-false`}
                 className={`flex h-9 w-12 cursor-pointer items-center justify-center rounded-md border transition-colors ${
                   subValue === false
-                    ? 'border-red-600 bg-red-100 dark:border-red-400 dark:bg-red-900/30'
-                    : 'border-border hover:bg-accent'
+                    ? "border-red-600 bg-red-100 dark:border-red-400 dark:bg-red-900/30"
+                    : "border-border hover:bg-accent"
                 }`}
               >
                 <RadioGroupItem
@@ -90,8 +90,8 @@ export function TrueFalseSetQuestion({
                 <X
                   className={`h-4 w-4 ${
                     subValue === false
-                      ? 'text-red-700 dark:text-red-400'
-                      : 'text-muted-foreground'
+                      ? "text-red-700 dark:text-red-400"
+                      : "text-muted-foreground"
                   }`}
                 />
               </Label>

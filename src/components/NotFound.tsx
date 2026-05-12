@@ -1,4 +1,4 @@
-import { useRouter } from '@tanstack/react-router';
+import { useRouter } from "@tanstack/react-router";
 
 interface NotFoundProps {
   error?: unknown;
@@ -9,15 +9,15 @@ export function NotFound({ error }: NotFoundProps) {
   const message =
     error instanceof Error
       ? error.message
-      : 'The page you are looking for does not exist.';
+      : "The page you are looking for does not exist.";
 
   const handleGoBack = () => {
-    if (typeof window !== 'undefined' && window.history.length > 1) {
+    if (typeof window !== "undefined" && window.history.length > 1) {
       router.history.back();
       return;
     }
 
-    router.navigate({ to: '/' });
+    router.navigate({ to: "/" });
   };
 
   return (

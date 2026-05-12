@@ -1,16 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useEffect } from 'react';
-import { ExamStartForm } from '@/components/ExamStartForm';
-import Header from '@/components/layout/header';
-import { useLayout } from '@/contexts';
-import { seo } from '@/lib/seo';
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { ExamStartForm } from "@/components/ExamStartForm";
+import Header from "@/components/layout/header";
+import { useLayout } from "@/contexts";
+import { seo } from "@/lib/seo";
 
-export const Route = createFileRoute('/(public)/')({
+export const Route = createFileRoute("/(public)/")({
   component: Home,
   head: () => {
     const seoData = seo({
-      title: 'Luyện Tập Làm Đề',
-      description: 'Nhập thông tin của bạn để bắt đầu làm bài',
+      title: "Luyện Tập Làm Đề",
+      description: "Nhập thông tin của bạn để bắt đầu làm bài",
     });
 
     return {

@@ -1,6 +1,6 @@
-import { BookOpen, Clock, Lock } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import type { ExamMetadata } from '@/lib/exam';
+import { BookOpen, Clock, Lock } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import type { ExamMetadata } from "@/lib/exam";
 
 interface ExamInfoCardProps {
   exam: ExamMetadata;
@@ -22,7 +22,7 @@ export function ExamInfoCard({ exam }: ExamInfoCardProps) {
         <Badge variant="secondary" className="inline-flex items-center gap-1.5">
           <Clock className="h-3.5 w-3.5" />
           <span>
-            {exam.duration ? `${exam.duration} phút` : 'Không giới hạn'}
+            {exam.duration ? `${exam.duration} phút` : "Không giới hạn"}
           </span>
         </Badge>
         <Badge variant="secondary">

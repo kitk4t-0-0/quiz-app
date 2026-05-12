@@ -1,6 +1,6 @@
-import { Suspense } from 'react';
-import { ThemeToggle } from '@/components/ui/theme';
-import { useTheme } from '@/contexts';
+import { Suspense } from "react";
+import { ThemeToggle } from "@/components/ui/theme";
+import { useTheme } from "@/contexts";
 
 const Header = () => {
   const { setTheme, themeMode } = useTheme();

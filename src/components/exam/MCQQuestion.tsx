@@ -1,7 +1,7 @@
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import type { MCQQuestion as MCQQuestionType } from '@/types';
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import type { MCQQuestion as MCQQuestionType } from "@/types";
 
 interface MCQQuestionProps {
   question: MCQQuestionType;
@@ -16,7 +16,7 @@ export function MCQQuestion({ question, value, onChange }: MCQQuestionProps) {
   if (!allowMultiple) {
     return (
       <RadioGroup
-        value={typeof value === 'string' ? value : value[0] || ''}
+        value={typeof value === "string" ? value : value[0] || ""}
         onValueChange={(newValue) => onChange(newValue)}
         className="space-y-3"
       >
@@ -29,8 +29,8 @@ export function MCQQuestion({ question, value, onChange }: MCQQuestionProps) {
               htmlFor={`${question.id}-${option.id}`}
               className={`flex cursor-pointer items-start space-x-3 rounded-lg border p-4 transition-colors ${
                 isSelected
-                  ? 'border-primary bg-primary/5'
-                  : 'border-border hover:bg-accent/50'
+                  ? "border-primary bg-primary/5"
+                  : "border-border hover:bg-accent/50"
               }`}
             >
               <RadioGroupItem
@@ -73,8 +73,8 @@ export function MCQQuestion({ question, value, onChange }: MCQQuestionProps) {
             htmlFor={`${question.id}-${option.id}`}
             className={`flex cursor-pointer items-start space-x-3 rounded-lg border p-4 transition-colors ${
               isSelected
-                ? 'border-primary bg-primary/5'
-                : 'border-border hover:bg-accent/50'
+                ? "border-primary bg-primary/5"
+                : "border-border hover:bg-accent/50"
             }`}
           >
             <Checkbox

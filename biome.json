@@ -68,7 +68,7 @@
       "arrowParentheses": "always",
       "bracketSpacing": true,
       "bracketSameLine": false,
-      "quoteStyle": "single"
+      "quoteStyle": "double"
     }
   },
   "json": {

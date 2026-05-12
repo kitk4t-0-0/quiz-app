@@ -1,6 +1,6 @@
-import type { Exam } from '@/types/exam';
-import { QuestionType } from '@/types/exam';
-import { getAllQuestions } from './helpers';
+import type { Exam } from "@/types/exam";
+import { QuestionType } from "@/types/exam";
+import { getAllQuestions } from "./helpers";
 
 /**
  * Check if exam is currently available
@@ -10,7 +10,7 @@ export function isExamAvailable(exam: Exam): {
   reason?: string;
 } {
   if (!exam.isPublished) {
-    return { available: false, reason: 'Exam is not published' };
+    return { available: false, reason: "Exam is not published" };
   }
 
   const now = new Date();
@@ -28,7 +28,7 @@ export function isExamAvailable(exam: Exam): {
   if (exam.timeConfig.endTime) {
     const endTime = new Date(exam.timeConfig.endTime);
     if (now > endTime && !exam.timeConfig.allowLateSubmission) {
-      return { available: false, reason: 'Exam has ended' };
+      return { available: false, reason: "Exam has ended" };
     }
   }
 
@@ -59,12 +59,12 @@ export function validateExam(exam: Exam): {
   const errors: string[] = [];
 
   if (exam.questionSets.length === 0) {
-    errors.push('Exam must have at least one question set');
+    errors.push("Exam must have at least one question set");
   }
 
   const totalQuestions = getAllQuestions(exam).length;
   if (totalQuestions === 0) {
-    errors.push('Exam must have at least one question');
+    errors.push("Exam must have at least one question");
   }
 
   // Check for duplicate question IDs
@@ -84,7 +84,7 @@ export function validateExam(exam: Exam): {
   }
 
   if (exam.scoringConfig.passingScore < 0) {
-    errors.push('Passing score cannot be negative');
+    errors.push("Passing score cannot be negative");
   }
 
   // Validate MCQ questions have at least one correct answer

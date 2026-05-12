@@ -1,10 +1,10 @@
-import { Separator } from '@/components/ui/separator';
-import type { AnswerState } from '@/lib/exam/session';
-import type { QuestionSet } from '@/types';
-import { MCQQuestion } from './MCQQuestion';
-import { QuestionCard } from './QuestionCard';
-import { ShortAnswerQuestion } from './ShortAnswerQuestion';
-import { TrueFalseSetQuestion } from './TrueFalseSetQuestion';
+import { Separator } from "@/components/ui/separator";
+import type { AnswerState } from "@/lib/exam/session";
+import type { QuestionSet } from "@/types";
+import { MCQQuestion } from "./MCQQuestion";
+import { QuestionCard } from "./QuestionCard";
+import { ShortAnswerQuestion } from "./ShortAnswerQuestion";
+import { TrueFalseSetQuestion } from "./TrueFalseSetQuestion";
 
 interface QuestionSetRendererProps {
   questionSets: QuestionSet[];
@@ -20,10 +20,10 @@ interface QuestionSetRendererProps {
  */
 function isRecord(value: unknown): value is Record<string, boolean> {
   return (
-    typeof value === 'object' &&
+    typeof value === "object" &&
     value !== null &&
     !Array.isArray(value) &&
-    Object.prototype.toString.call(value) === '[object Object]'
+    Object.prototype.toString.call(value) === "[object Object]"
   );
 }
 
@@ -61,7 +61,7 @@ export function QuestionSetRenderer({
                 const currentQuestionNumber = questionCounter;
 
                 // True/False Set Question
-                if (question.type === 'true_false_set') {
+                if (question.type === "true_false_set") {
                   return (
                     <QuestionCard
                       key={question.id}
@@ -89,26 +89,26 @@ export function QuestionSetRenderer({
                     question={question}
                     questionNumber={currentQuestionNumber}
                   >
-                    {question.type === 'mcq' && (
+                    {question.type === "mcq" && (
                       <MCQQuestion
                         question={question}
                         value={
                           answers[question.id] !== undefined &&
-                          typeof answers[question.id] !== 'boolean' &&
+                          typeof answers[question.id] !== "boolean" &&
                           !isRecord(answers[question.id])
                             ? (answers[question.id] as string | string[])
                             : question.allowMultiple
                               ? []
-                              : ''
+                              : ""
                         }
                         onChange={(value) => onAnswerChange(question.id, value)}
                       />
                     )}
 
-                    {question.type === 'short_answer' && (
+                    {question.type === "short_answer" && (
                       <ShortAnswerQuestion
                         question={question}
-                        value={(answers[question.id] as string) || ''}
+                        value={(answers[question.id] as string) || ""}
                         onChange={(value) => onAnswerChange(question.id, value)}
                       />
                     )}

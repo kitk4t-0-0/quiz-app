@@ -1,8 +1,8 @@
-import type { AnyRoute } from '@tanstack/react-router';
-import { createRouter as createTanStackRouter } from '@tanstack/react-router';
-import { DefaultCatchBoundary } from '@/components/DefaultCatchBoundary';
-import { NotFound } from '@/components/NotFound';
-import { routeTree } from './routeTree.gen';
+import type { AnyRoute } from "@tanstack/react-router";
+import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import { DefaultCatchBoundary } from "@/components/DefaultCatchBoundary";
+import { NotFound } from "@/components/NotFound";
+import { routeTree } from "./routeTree.gen";
 
 interface CreateRouterOptions<TRouteTree extends AnyRoute> {
   debug?: boolean;
@@ -15,10 +15,10 @@ function createRouter<TRouteTree extends AnyRoute>({
   const router = createTanStackRouter({
     context: null,
     routeTree,
-    defaultPreload: 'intent',
+    defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
     scrollRestoration: true,
-    defaultHashScrollIntoView: { behavior: 'smooth' },
+    defaultHashScrollIntoView: { behavior: "smooth" },
     defaultStructuralSharing: true,
     defaultErrorComponent: (props) => <DefaultCatchBoundary {...props} />,
     defaultNotFoundComponent: () => <NotFound />,

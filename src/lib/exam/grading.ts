@@ -7,10 +7,10 @@ import type {
   ShortAnswerQuestion,
   StudentAnswer,
   TrueFalseSetQuestion,
-} from '@/types/exam';
-import { QuestionType } from '@/types/exam';
-import { calculateTotalPoints } from './helpers';
-import { calculateTFWeight } from './scoring';
+} from "@/types/exam";
+import { QuestionType } from "@/types/exam";
+import { calculateTotalPoints } from "./helpers";
+import { calculateTFWeight } from "./scoring";
 
 /**
  * Check if an answer is correct
@@ -60,7 +60,7 @@ function checkMCQAnswer(question: MCQQuestion, answer: StudentAnswer): boolean {
   }
 
   // Single choice
-  if (typeof answer.answer !== 'string') {
+  if (typeof answer.answer !== "string") {
     return false;
   }
   return correctOptionIds.includes(answer.answer);
@@ -74,7 +74,7 @@ function checkTrueFalseSetAnswer(
   answer: StudentAnswer,
 ): boolean {
   // Answer should be a record of subQuestionId -> boolean
-  if (typeof answer.answer !== 'object' || Array.isArray(answer.answer)) {
+  if (typeof answer.answer !== "object" || Array.isArray(answer.answer)) {
     return false;
   }
 
@@ -94,7 +94,7 @@ function checkShortAnswer(
   question: ShortAnswerQuestion,
   answer: StudentAnswer,
 ): boolean {
-  if (typeof answer.answer !== 'string') {
+  if (typeof answer.answer !== "string") {
     return false;
   }
 

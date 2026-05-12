@@ -1,5 +1,5 @@
-import { Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ExamFooterProps {
   totalQuestions: number;

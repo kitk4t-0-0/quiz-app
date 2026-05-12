@@ -15,29 +15,49 @@ export {
   createTimeConfig,
   createTrueFalseSetQuestion,
   createTrueFalseSubQuestion,
-} from './factory';
+} from "./factory";
 
 // Grading
-export { checkAnswer, gradeSubmission } from './grading';
+export { checkAnswer, gradeSubmission } from "./grading";
 // Helpers
 export {
   calculateRemainingTime,
   calculateTotalPoints,
   getAllQuestions,
   getQuestionById,
-} from './helpers';
+} from "./helpers";
 // Loader
-export type { ExamMetadata } from './loader';
-export { loadExam, loadExamById, loadExamIndex } from './loader';
+export type { ExamMetadata } from "./loader";
+export { loadExam, loadExamById, loadExamIndex } from "./loader";
+// Result Helpers
+export type {
+  DetailedResultData,
+  QuestionResult,
+  QuestionTypeStats,
+} from "./result-helpers";
+export {
+  calculateDetailedResults,
+  generateSecurityCode,
+} from "./result-helpers";
 // Scoring
-export { calculateTFWeight } from './scoring';
+export { calculateTFWeight } from "./scoring";
 
 // Shuffling
 export {
   shuffleArray,
   shuffleExamQuestions,
   shuffleQuestionOptions,
-} from './shuffling';
+} from "./shuffling";
+
+// Submission
+export {
+  convertAnswersToSubmission,
+  createExamSubmission,
+  getExamSubmissions,
+  getSubmission,
+  getSubmissionIds,
+  saveSubmission,
+} from "./submission";
 
 // Validation
-export { isExamAvailable, isLateSubmission, validateExam } from './validation';
+export { isExamAvailable, isLateSubmission, validateExam } from "./validation";

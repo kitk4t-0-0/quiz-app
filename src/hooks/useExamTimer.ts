@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { calculateRemainingTime, type ExamSession } from '@/lib/exam/session';
-import type { Exam } from '@/types';
+import { useEffect, useState } from "react";
+import { calculateRemainingTime, type ExamSession } from "@/lib/exam/session";
+import type { Exam } from "@/types";
 
 /**
  * Hook to manage exam timer countdown

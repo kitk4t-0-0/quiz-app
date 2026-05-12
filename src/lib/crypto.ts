@@ -20,11 +20,11 @@ export async function hashPassword(password: string): Promise<string> {
 
   // Use PBKDF2 for password hashing (similar to bcrypt concept)
   const keyMaterial = await crypto.subtle.importKey(
-    'raw',
+    "raw",
     data,
-    { name: 'PBKDF2' },
+    { name: "PBKDF2" },
     false,
-    ['deriveBits'],
+    ["deriveBits"],
   );
 
   // Generate a random salt
@@ -32,10 +32,10 @@ export async function hashPassword(password: string): Promise<string> {
 
   const derivedBits = await crypto.subtle.deriveBits(
     {
-      name: 'PBKDF2',
+      name: "PBKDF2",
       salt: salt,
       iterations: PBKDF2_ITERATIONS,
-      hash: 'SHA-256',
+      hash: "SHA-256",
     },
     keyMaterial,
     KEY_LENGTH,
@@ -69,19 +69,19 @@ export async function verifyPassword(
 
     // Hash the input password with the same salt
     const keyMaterial = await crypto.subtle.importKey(
-      'raw',
+      "raw",
       data,
-      { name: 'PBKDF2' },
+      { name: "PBKDF2" },
       false,
-      ['deriveBits'],
+      ["deriveBits"],
     );
 
     const derivedBits = await crypto.subtle.deriveBits(
       {
-        name: 'PBKDF2',
+        name: "PBKDF2",
         salt: salt,
         iterations: PBKDF2_ITERATIONS,
-        hash: 'SHA-256',
+        hash: "SHA-256",
       },
       keyMaterial,
       KEY_LENGTH,
@@ -102,7 +102,7 @@ export async function verifyPassword(
 
     return true;
   } catch (error) {
-    console.error('Password verification failed:', error);
+    console.error("Password verification failed:", error);
     return false;
   }
 }
@@ -113,14 +113,14 @@ export async function verifyPassword(
 export async function generateEncryptionKey(): Promise<string> {
   const key = await crypto.subtle.generateKey(
     {
-      name: 'AES-GCM',
+      name: "AES-GCM",
       length: KEY_LENGTH,
     },
     true,
-    ['encrypt', 'decrypt'],
+    ["encrypt", "decrypt"],
   );
 
-  const exported = await crypto.subtle.exportKey('raw', key);
+  const exported = await crypto.subtle.exportKey("raw", key);
   return btoa(String.fromCharCode(...new Uint8Array(exported)));
 }
 
@@ -137,11 +137,11 @@ export async function encryptData(
   // Import the key
   const keyData = Uint8Array.from(atob(keyString), (c) => c.charCodeAt(0));
   const key = await crypto.subtle.importKey(
-    'raw',
+    "raw",
     keyData,
-    { name: 'AES-GCM' },
+    { name: "AES-GCM" },
     false,
-    ['encrypt'],
+    ["encrypt"],
   );
 
   // Generate a random IV
@@ -150,7 +150,7 @@ export async function encryptData(
   // Encrypt
   const encrypted = await crypto.subtle.encrypt(
     {
-      name: 'AES-GCM',
+      name: "AES-GCM",
       iv: iv,
     },
     key,
@@ -183,17 +183,17 @@ export async function decryptData(
     // Import the key
     const keyData = Uint8Array.from(atob(keyString), (c) => c.charCodeAt(0));
     const key = await crypto.subtle.importKey(
-      'raw',
+      "raw",
       keyData,
-      { name: 'AES-GCM' },
+      { name: "AES-GCM" },
       false,
-      ['decrypt'],
+      ["decrypt"],
     );
 
     // Decrypt
     const decrypted = await crypto.subtle.decrypt(
       {
-        name: 'AES-GCM',
+        name: "AES-GCM",
         iv: iv,
       },
       key,
@@ -203,8 +203,8 @@ export async function decryptData(
     const decoder = new TextDecoder();
     return decoder.decode(decrypted);
   } catch (error) {
-    console.error('Decryption failed:', error);
-    throw new Error('Decryption failed. Invalid key or corrupted data.');
+    console.error("Decryption failed:", error);
+    throw new Error("Decryption failed. Invalid key or corrupted data.");
   }
 }
 
@@ -221,7 +221,7 @@ export function checkPasswordStrength(password: string): {
   if (password.length >= 8) {
     score += 1;
   } else {
-    feedback.push('Password should be at least 8 characters long');
+    feedback.push("Password should be at least 8 characters long");
   }
 
   if (password.length >= 12) {
@@ -231,19 +231,19 @@ export function checkPasswordStrength(password: string): {
   if (/[a-z]/.test(password) && /[A-Z]/.test(password)) {
     score += 1;
   } else {
-    feedback.push('Include both uppercase and lowercase letters');
+    feedback.push("Include both uppercase and lowercase letters");
   }
 
   if (/\d/.test(password)) {
     score += 1;
   } else {
-    feedback.push('Include at least one number');
+    feedback.push("Include at least one number");
   }
 
   if (/[^a-zA-Z0-9]/.test(password)) {
     score += 1;
   } else {
-    feedback.push('Include at least one special character');
+    feedback.push("Include at least one special character");
   }
 
   return { score, feedback };

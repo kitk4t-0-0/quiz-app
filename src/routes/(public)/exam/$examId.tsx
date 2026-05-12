@@ -1,17 +1,17 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { AlertCircle, FileText } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ExamFooter, ExamHeader, QuestionSetRenderer } from '@/components/exam';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { useLayout } from '@/contexts';
-import { useExamAnswers } from '@/hooks/useExamAnswers';
-import { useAnswerPersistence, useExamSession } from '@/hooks/useExamSession';
-import { useExamTimer } from '@/hooks/useExamTimer';
-import { clearExamSession } from '@/lib/exam/session';
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { AlertCircle, FileText } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ExamFooter, ExamHeader, QuestionSetRenderer } from "@/components/exam";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useLayout } from "@/contexts";
+import { useExamAnswers } from "@/hooks/useExamAnswers";
+import { useAnswerPersistence, useExamSession } from "@/hooks/useExamSession";
+import { useExamTimer } from "@/hooks/useExamTimer";
+import { clearExamSession } from "@/lib/exam/session";
 
-export const Route = createFileRoute('/(public)/exam/$examId')({
+export const Route = createFileRoute("/(public)/exam/$examId")({
   component: ExamPage,
 });
 
@@ -43,31 +43,50 @@ function ExamPage() {
 
   const handleSubmit = useCallback(async () => {
     // Prevent multiple simultaneous submissions
-    if (isSubmittingRef.current) return;
+    if (isSubmittingRef.current || !exam || !session) return;
 
     isSubmittingRef.current = true;
     setIsSubmitting(true);
 
     try {
-      // TODO: Implement actual submission logic
-      // For now, just simulate submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Dynamically import submission functions to avoid circular dependencies
+      const { createExamSubmission, saveSubmission } = await import(
+        "@/lib/exam/submission"
+      );
 
-      // Access current answers via state setter to avoid stale closure
-      setAnswers((currentAnswers) => {
-        console.log('Submitting answers:', currentAnswers);
-        return currentAnswers;
-      });
+      // Get current answers
+      const currentAnswers = answers;
+
+      // Create submission
+      const submissionData = createExamSubmission(
+        exam,
+        session.studentName,
+        session.studentClass,
+        currentAnswers,
+        session.startedAt,
+      );
+
+      // Save submission to localStorage
+      saveSubmission(submissionData);
 
       // Clear session after successful submission
       clearExamSession();
 
-      alert('Bài thi đã được nộp thành công!');
-    } finally {
+      // Navigate to result page
+      await navigate({
+        to: "/result/$submissionId",
+        params: {
+          submissionId: submissionData.id,
+        },
+        replace: true,
+      });
+    } catch (error) {
+      console.error("❌ Submission error:", error);
+      alert("Có lỗi xảy ra khi nộp bài. Vui lòng thử lại.");
       isSubmittingRef.current = false;
       setIsSubmitting(false);
     }
-  }, [setAnswers]);
+  }, [exam, session, answers, navigate]);
 
   // Timer countdown
   const timeRemaining = useExamTimer(exam, session, handleSubmit);
@@ -131,7 +150,7 @@ function ExamPage() {
           <AlertDescription className="mb-4">{error}</AlertDescription>
         </Alert>
         <div className="mt-4 text-center">
-          <Button onClick={() => navigate({ to: '/' })}>
+          <Button onClick={() => navigate({ to: "/" })}>
             Quay lại trang chủ
           </Button>
         </div>

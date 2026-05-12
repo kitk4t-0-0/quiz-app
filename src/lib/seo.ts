@@ -1,11 +1,11 @@
-import { getBaseUrl } from './utils';
+import { getBaseUrl } from "./utils";
 
-const OG_LOCALE = 'en_US';
+const OG_LOCALE = "en_US";
 const siteConfig = {
-  title: 'Quiz App',
+  title: "Quiz App",
   author: {
-    name: 'Your Name',
-    handle: '@yourhandle',
+    name: "Your Name",
+    handle: "@yourhandle",
   },
 };
 
@@ -41,7 +41,7 @@ export function seo({
   keywords,
   author,
   image = `${getBaseUrl()}/site/og-image.jpg`,
-  type = 'website',
+  type = "website",
   url = getBaseUrl(),
   canonical,
 }: {
@@ -50,7 +50,7 @@ export function seo({
   image?: string | null;
   keywords?: string | null;
   author?: string | null;
-  type?: 'website' | 'article' | 'video' | 'book' | 'profile';
+  type?: "website" | "article" | "video" | "book" | "profile";
   url?: string;
   canonical?: string;
 }) {
@@ -62,51 +62,51 @@ export function seo({
   }> = [
     // Basic meta tags
     { title },
-    { name: 'author', content: author ?? siteConfig.author.name },
-    { name: 'robots', content: 'index, follow' },
+    { name: "author", content: author ?? siteConfig.author.name },
+    { name: "robots", content: "index, follow" },
 
     // Twitter Card tags
-    { name: 'twitter:title', content: title },
-    { name: 'twitter:creator', content: siteConfig.author.handle },
-    { name: 'twitter:site', content: siteConfig.author.handle },
-    { name: 'twitter:widgets:new-embed-design', content: 'on' },
-    { name: 'twitter:url', content: url },
+    { name: "twitter:title", content: title },
+    { name: "twitter:creator", content: siteConfig.author.handle },
+    { name: "twitter:site", content: siteConfig.author.handle },
+    { name: "twitter:widgets:new-embed-design", content: "on" },
+    { name: "twitter:url", content: url },
 
     // Open Graph tags
-    { property: 'og:type', content: type },
-    { property: 'og:site_name', content: siteConfig.title },
-    { property: 'og:title', content: title },
-    { property: 'og:locale', content: OG_LOCALE },
-    { property: 'og:url', content: url },
+    { property: "og:type", content: type },
+    { property: "og:site_name", content: siteConfig.title },
+    { property: "og:title", content: title },
+    { property: "og:locale", content: OG_LOCALE },
+    { property: "og:url", content: url },
   ];
 
   // Add optional fields
   if (description) {
     tags.push(
-      { name: 'description', content: description },
-      { name: 'twitter:description', content: description },
-      { property: 'og:description', content: description },
+      { name: "description", content: description },
+      { name: "twitter:description", content: description },
+      { property: "og:description", content: description },
     );
   }
 
   if (keywords) {
-    tags.push({ name: 'keywords', content: keywords });
+    tags.push({ name: "keywords", content: keywords });
   }
 
   if (image) {
     const imageAlt = `${title} - ${siteConfig.title}`;
     tags.push(
-      { name: 'twitter:image', content: image },
-      { name: 'twitter:image:alt', content: imageAlt },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { property: 'og:image', content: image },
-      { property: 'og:image:alt', content: imageAlt },
-      { property: 'og:image:width', content: '1200' },
-      { property: 'og:image:height', content: '630' },
+      { name: "twitter:image", content: image },
+      { name: "twitter:image:alt", content: imageAlt },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: image },
+      { property: "og:image:alt", content: imageAlt },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
     );
   }
 
-  const links = canonical ? [{ rel: 'canonical', href: canonical }] : [];
+  const links = canonical ? [{ rel: "canonical", href: canonical }] : [];
 
   return { meta: tags, links };
 }

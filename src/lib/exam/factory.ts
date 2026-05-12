@@ -8,10 +8,10 @@ import type {
   TimeConfig,
   TrueFalseSetQuestion,
   TrueFalseSubQuestion,
-} from '@/types/exam';
-import { QuestionType } from '@/types/exam';
-import { generateEncryptionKey, hashPassword } from '../crypto';
-import { generateId } from '../id-generator';
+} from "@/types/exam";
+import { QuestionType } from "@/types/exam";
+import { generateEncryptionKey, hashPassword } from "../crypto";
+import { generateId } from "../id-generator";
 
 /**
  * Factory functions to create exam components with sensible defaults
@@ -100,7 +100,7 @@ export function createShortAnswerQuestion(
  * Create a new question set
  */
 export function createQuestionSet(
-  data: Partial<QuestionSet> & { questions: QuestionSet['questions'] },
+  data: Partial<QuestionSet> & { questions: QuestionSet["questions"] },
 ): QuestionSet {
   return {
     id: data.id || generateId(),

@@ -1,7 +1,7 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
-import { useLayout } from '@/contexts';
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { useLayout } from "@/contexts";
 
-export const Route = createFileRoute('/(public)')({
+export const Route = createFileRoute("/(public)")({
   component: LayoutComponent,
 });
 

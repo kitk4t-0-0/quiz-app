@@ -11,7 +11,7 @@ export {
   examSubmissionSchema,
   type QuestionSet,
   questionSetSchema,
-} from './exam';
+} from "./exam";
 
 // Config types
 export {
@@ -21,7 +21,7 @@ export {
   securityConfigSchema,
   type TimeConfig,
   timeConfigSchema,
-} from './exam-config';
+} from "./exam-config";
 // Question types
 export {
   type MCQQuestion,
@@ -38,4 +38,4 @@ export {
   type TrueFalseSubQuestion,
   trueFalseSetQuestionSchema,
   trueFalseSubQuestionSchema,
-} from './question';
+} from "./question";

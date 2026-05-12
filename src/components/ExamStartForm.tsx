@@ -1,8 +1,8 @@
-import { useNavigate } from '@tanstack/react-router';
-import { AlertCircle } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+import { useNavigate } from "@tanstack/react-router";
+import { AlertCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,24 +10,24 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import type { ExamMetadata } from '@/lib/exam';
-import { loadExam, loadExamIndex } from '@/lib/exam';
-import { isExamAvailable } from '@/lib/exam/validation';
-import { ExamInfoCard } from './home/ExamInfoCard';
-import { ExamPasswordField } from './home/ExamPasswordField';
-import { ExamSelector } from './home/ExamSelector';
-import { StudentInfoFields } from './home/StudentInfoFields';
+} from "@/components/ui/card";
+import type { ExamMetadata } from "@/lib/exam";
+import { loadExam, loadExamIndex } from "@/lib/exam";
+import { isExamAvailable } from "@/lib/exam/validation";
+import { ExamInfoCard } from "./home/ExamInfoCard";
+import { ExamPasswordField } from "./home/ExamPasswordField";
+import { ExamSelector } from "./home/ExamSelector";
+import { StudentInfoFields } from "./home/StudentInfoFields";
 
 export function ExamStartForm() {
   const navigate = useNavigate();
   const [exams, setExams] = useState<ExamMetadata[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedExamId, setSelectedExamId] = useState<string>('');
-  const [studentName, setStudentName] = useState('');
-  const [studentClass, setStudentClass] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [selectedExamId, setSelectedExamId] = useState<string>("");
+  const [studentName, setStudentName] = useState("");
+  const [studentClass, setStudentClass] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   // Load available exams
   useEffect(() => {
@@ -35,7 +35,7 @@ export function ExamStartForm() {
       const data = loadExamIndex();
 
       if (data.length === 0) {
-        setError('Không có bài thi nào. Vui lòng kiểm tra kết nối và thử lại.');
+        setError("Không có bài thi nào. Vui lòng kiểm tra kết nối và thử lại.");
         setLoading(false);
         return;
       }
@@ -43,8 +43,8 @@ export function ExamStartForm() {
       setExams(data);
       setLoading(false);
     } catch (error) {
-      console.error('Failed to load exams:', error);
-      setError('Không thể tải danh sách bài thi. Vui lòng tải lại trang.');
+      console.error("Failed to load exams:", error);
+      setError("Không thể tải danh sách bài thi. Vui lòng tải lại trang.");
       setLoading(false);
     }
   }, []);
@@ -53,26 +53,26 @@ export function ExamStartForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     // Validation
     if (!studentName.trim()) {
-      setError('Vui lòng nhập tên của bạn');
+      setError("Vui lòng nhập tên của bạn");
       return;
     }
 
     if (!studentClass.trim()) {
-      setError('Vui lòng nhập lớp của bạn');
+      setError("Vui lòng nhập lớp của bạn");
       return;
     }
 
     if (!selectedExamId || !selectedExam) {
-      setError('Vui lòng chọn bài thi');
+      setError("Vui lòng chọn bài thi");
       return;
     }
 
     if (selectedExam.requirePassword && !password.trim()) {
-      setError('Bài thi này yêu cầu mật khẩu');
+      setError("Bài thi này yêu cầu mật khẩu");
       return;
     }
 
@@ -80,7 +80,7 @@ export function ExamStartForm() {
     try {
       const fullExam = loadExam(selectedExam.file);
       if (!fullExam) {
-        setError('Không thể tải thông tin bài thi. Vui lòng thử lại.');
+        setError("Không thể tải thông tin bài thi. Vui lòng thử lại.");
         return;
       }
 
@@ -88,7 +88,7 @@ export function ExamStartForm() {
       if (!availabilityCheck.available) {
         setError(
           availabilityCheck.reason ||
-            'Bài thi không khả dụng. Vui lòng liên hệ giáo viên.',
+            "Bài thi không khả dụng. Vui lòng liên hệ giáo viên.",
         );
         return;
       }
@@ -102,14 +102,14 @@ export function ExamStartForm() {
       //   }
       // }
     } catch (error) {
-      console.error('Error validating exam:', error);
-      setError('Không thể xác thực bài thi. Vui lòng thử lại.');
+      console.error("Error validating exam:", error);
+      setError("Không thể xác thực bài thi. Vui lòng thử lại.");
       return;
     }
 
     // Store student info and navigate to exam
     sessionStorage.setItem(
-      'examSession',
+      "examSession",
       JSON.stringify({
         studentName: studentName.trim(),
         studentClass: studentClass.trim(),
@@ -119,7 +119,7 @@ export function ExamStartForm() {
     );
 
     // Navigate to exam page immediately (no need to preload exam data)
-    navigate({ to: '/exam/$examId', params: { examId: selectedExamId } });
+    navigate({ to: "/exam/$examId", params: { examId: selectedExamId } });
   };
 
   if (loading) {
@@ -157,7 +157,7 @@ export function ExamStartForm() {
             selectedExamId={selectedExamId}
             onExamChange={(examId) => {
               setSelectedExamId(examId);
-              setPassword(''); // Clear password when changing exam
+              setPassword(""); // Clear password when changing exam
             }}
           />
 

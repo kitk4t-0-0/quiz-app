@@ -1,5 +1,5 @@
-import type { Exam, Question } from '@/types/exam';
-import { QuestionType } from '@/types/exam';
+import type { Exam, Question } from "@/types/exam";
+import { QuestionType } from "@/types/exam";
 
 /**
  * Shuffle an array (Fisher-Yates algorithm)

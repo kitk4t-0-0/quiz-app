@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import type { AnswerState } from '@/lib/exam/session';
+import { useMemo, useState } from "react";
+import type { AnswerState } from "@/lib/exam/session";
 
 /**
  * Hook to manage exam answers state and counting
@@ -12,12 +12,12 @@ export function useExamAnswers() {
     return Object.keys(answers).filter((key) => {
       const answer = answers[key];
       if (Array.isArray(answer)) return answer.length > 0;
-      if (typeof answer === 'boolean') return true;
-      if (typeof answer === 'object' && answer !== null) {
+      if (typeof answer === "boolean") return true;
+      if (typeof answer === "object" && answer !== null) {
         // For True/False Set: check if at least one sub-question is answered
         return Object.keys(answer).length > 0;
       }
-      return answer !== '' && answer !== null && answer !== undefined;
+      return answer !== "" && answer !== null && answer !== undefined;
     }).length;
   }, [answers]);
 
