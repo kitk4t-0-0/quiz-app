@@ -39,3 +39,10 @@ export {
   trueFalseSetQuestionSchema,
   trueFalseSubQuestionSchema,
 } from "./question";
+
+// Result types
+export type {
+  DetailedResultData,
+  QuestionResult,
+  QuestionTypeStats,
+} from "./result";

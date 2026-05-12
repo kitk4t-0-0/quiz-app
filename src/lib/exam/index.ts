@@ -30,11 +30,6 @@ export {
 export type { ExamMetadata } from "./loader";
 export { loadExam, loadExamById, loadExamIndex } from "./loader";
 // Result Helpers
-export type {
-  DetailedResultData,
-  QuestionResult,
-  QuestionTypeStats,
-} from "./result-helpers";
 export {
   calculateDetailedResults,
   generateSecurityCode,

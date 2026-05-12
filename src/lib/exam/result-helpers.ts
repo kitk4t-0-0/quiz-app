@@ -1,10 +1,10 @@
-import type {
-  Exam,
-  ExamSubmission,
-  Question,
-  StudentAnswer,
-} from "@/types/exam";
+import type { Exam, ExamSubmission, StudentAnswer } from "@/types/exam";
 import { QuestionType } from "@/types/exam";
+import type {
+  DetailedResultData,
+  QuestionResult,
+  QuestionTypeStats,
+} from "@/types/result";
 import { checkAnswer } from "./grading";
 import { calculateTFWeight } from "./scoring";
 
@@ -24,44 +24,6 @@ export function generateSecurityCode(): string {
   }).join("-");
 
   return code;
-}
-
-/**
- * Question type statistics
- */
-export interface QuestionTypeStats {
-  type: string;
-  correct: number;
-  total: number;
-  earnedPoints: number;
-  totalPoints: number;
-}
-
-/**
- * Individual question result
- */
-export interface QuestionResult {
-  questionNumber: number;
-  questionId: string;
-  questionType: string;
-  questionText: string;
-  isCorrect: boolean;
-  earnedPoints: number;
-  totalPoints: number;
-  scaledEarnedPoints: number;
-  scaledTotalPoints: number;
-  question: Question;
-  answer: StudentAnswer | undefined;
-}
-
-/**
- * Detailed result data for display
- */
-export interface DetailedResultData {
-  questionTypeStats: QuestionTypeStats[];
-  questionResults: QuestionResult[];
-  totalCorrect: number;
-  totalQuestions: number;
 }
 
 /**

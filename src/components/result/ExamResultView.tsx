@@ -76,7 +76,6 @@ export function ExamResultView({ exam, submission }: ExamResultViewProps) {
                 answer={result.answer}
                 questionNumber={result.questionNumber}
                 isCorrect={result.isCorrect}
-                earnedPoints={result.earnedPoints}
                 scaledEarnedPoints={result.scaledEarnedPoints}
                 scaledTotalPoints={result.scaledTotalPoints}
               />

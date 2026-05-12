@@ -1,13 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { QuestionType } from "@/types/exam";
-
-interface QuestionTypeStats {
-  type: string;
-  correct: number;
-  total: number;
-  earnedPoints: number;
-  totalPoints: number;
-}
+import type { QuestionTypeStats } from "@/types/result";
 
 interface QuestionTypeSummaryProps {
   stats: QuestionTypeStats[];

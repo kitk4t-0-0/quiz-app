@@ -4,23 +4,9 @@ import {
   type Question,
   QuestionType,
   type ShortAnswerQuestion,
-  type StudentAnswer,
   type TrueFalseSetQuestion,
 } from "@/types/exam";
-
-interface QuestionResult {
-  questionNumber: number;
-  questionId: string;
-  questionType: string;
-  questionText: string;
-  isCorrect: boolean;
-  earnedPoints: number;
-  totalPoints: number;
-  scaledEarnedPoints: number;
-  scaledTotalPoints: number;
-  question: Question;
-  answer: StudentAnswer | undefined;
-}
+import type { QuestionResult } from "@/types/result";
 
 interface QuestionResultTableProps {
   results: QuestionResult[];

@@ -2,10 +2,10 @@ import { useMemo } from "react";
 import { calculateTotalPoints } from "@/lib/exam/helpers";
 import {
   calculateDetailedResults,
-  type DetailedResultData,
   generateSecurityCode,
 } from "@/lib/exam/result-helpers";
 import type { Exam, ExamSubmission } from "@/types/exam";
+import type { DetailedResultData } from "@/types/result";
 
 interface UseExamResultReturn {
   detailedResults: DetailedResultData;
