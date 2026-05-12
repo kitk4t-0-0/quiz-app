@@ -18,7 +18,8 @@ export function ExamHeader({
   answeredQuestions,
   timeRemaining,
 }: ExamHeaderProps) {
-  const progress = (answeredQuestions / totalQuestions) * 100;
+  const progress =
+    totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
   const isLowTime = timeRemaining !== undefined && timeRemaining < 300; // < 5 minutes
 
   const formatTime = (seconds: number) => {
