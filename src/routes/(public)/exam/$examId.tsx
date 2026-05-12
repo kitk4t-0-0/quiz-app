@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { AlertCircle, FileText } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ExamFooter,
   ExamHeader,
@@ -81,20 +81,33 @@ function ExamPage() {
     }));
   };
 
-  const handleSubmit = useCallback(async () => {
-    if (isSubmitting) return;
+  // Use ref to track if submission is in progress to avoid race conditions
+  const isSubmittingRef = useRef(false);
 
+  const handleSubmit = useCallback(async () => {
+    // Prevent multiple simultaneous submissions
+    if (isSubmittingRef.current) return;
+
+    isSubmittingRef.current = true;
     setIsSubmitting(true);
 
-    // TODO: Implement actual submission logic
-    // For now, just simulate submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // TODO: Implement actual submission logic
+      // For now, just simulate submission
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    console.log('Submitting answers:', answers);
-    alert('Bài thi đã được nộp thành công!');
+      // Access current answers via state setter to avoid stale closure
+      setAnswers((currentAnswers) => {
+        console.log('Submitting answers:', currentAnswers);
+        return currentAnswers;
+      });
 
-    setIsSubmitting(false);
-  }, [isSubmitting, answers]);
+      alert('Bài thi đã được nộp thành công!');
+    } finally {
+      isSubmittingRef.current = false;
+      setIsSubmitting(false);
+    }
+  }, []); // Empty dependencies - stable reference
 
   // Timer countdown
   useEffect(() => {
