@@ -13,10 +13,10 @@ import {
 } from '@/components/ui/card';
 import type { ExamMetadata } from '@/lib/exam';
 import { loadExam, loadExamIndex } from '@/lib/exam';
-import { ExamInfoCard } from './exam/ExamInfoCard';
-import { ExamPasswordField } from './exam/ExamPasswordField';
-import { ExamSelector } from './exam/ExamSelector';
-import { StudentInfoFields } from './exam/StudentInfoFields';
+import { ExamInfoCard } from './home/ExamInfoCard';
+import { ExamPasswordField } from './home/ExamPasswordField';
+import { ExamSelector } from './home/ExamSelector';
+import { StudentInfoFields } from './home/StudentInfoFields';
 
 export function ExamStartForm() {
   const navigate = useNavigate();
@@ -67,12 +67,12 @@ export function ExamStartForm() {
       return;
     }
 
-    if (!selectedExamId) {
+    if (!selectedExamId || !selectedExam) {
       setError('Please select an exam');
       return;
     }
 
-    if (selectedExam?.requirePassword && !password.trim()) {
+    if (selectedExam.requirePassword && !password.trim()) {
       setError('This exam requires a password');
       return;
     }
