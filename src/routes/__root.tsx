@@ -3,7 +3,7 @@ import {
   HeadContent,
   Scripts,
 } from '@tanstack/react-router';
-import { ThemeProvider } from '@/lib/theme-provider';
+import { LayoutProvider, ThemeProvider } from '@/contexts';
 import appCss from '@/styles/global.css?url';
 
 export const Route = createRootRouteWithContext<Record<string, never>>()({
@@ -34,7 +34,9 @@ export const Route = createRootRouteWithContext<Record<string, never>>()({
   shellComponent: ({ children }: { children: React.ReactNode }) => {
     return (
       <ThemeProvider>
-        <ShellComponent>{children}</ShellComponent>
+        <LayoutProvider>
+          <ShellComponent>{children}</ShellComponent>
+        </LayoutProvider>
       </ThemeProvider>
     );
   },
@@ -46,6 +48,7 @@ function ShellComponent({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
+
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         {children}
 

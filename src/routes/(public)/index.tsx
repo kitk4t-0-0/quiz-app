@@ -1,5 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useEffect } from 'react';
 import { ExamStartForm } from '@/components/ExamStartForm';
+import Header from '@/components/layout/header';
+import { useLayout } from '@/contexts';
 import { seo } from '@/lib/seo';
 
 export const Route = createFileRoute('/(public)/')({
@@ -18,6 +21,18 @@ export const Route = createFileRoute('/(public)/')({
 });
 
 function Home() {
+  const { setHeader, setFooter } = useLayout();
+
+  useEffect(() => {
+    setHeader(<Header />);
+    setFooter(null);
+
+    return () => {
+      setHeader(null);
+      setFooter(null);
+    };
+  }, [setHeader, setFooter]);
+
   return (
     <div className="flex min-h-screen justify-center">
       <div className="w-full max-w-2xl px-4">
