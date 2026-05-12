@@ -99,7 +99,7 @@ function checkShortAnswer(
     : question.correctAnswer.trim().toLowerCase();
 
   // Check if it's a numeric answer
-  if (question.isNumeric && question.numericTolerance !== undefined) {
+  if (question.isNumeric) {
     const studentNum = Number.parseFloat(studentAnswer);
     const correctNum = Number.parseFloat(correctAnswer);
 
@@ -107,7 +107,9 @@ function checkShortAnswer(
       return false;
     }
 
-    return Math.abs(studentNum - correctNum) <= question.numericTolerance;
+    // Use numeric tolerance if provided, otherwise default to 0 for exact numeric match
+    const tolerance = question.numericTolerance ?? 0;
+    return Math.abs(studentNum - correctNum) <= tolerance;
   }
 
   // Check exact match
