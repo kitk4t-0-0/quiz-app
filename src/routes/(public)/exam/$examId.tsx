@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLayout } from "@/contexts";
 import { useExamAnswers } from "@/hooks/useExamAnswers";
+import { useExamSecurity } from "@/hooks/useExamSecurity";
 import { useAnswerPersistence, useExamSession } from "@/hooks/useExamSession";
 import { useExamTimer } from "@/hooks/useExamTimer";
 import { clearExamSession } from "@/lib/exam/session";
@@ -28,7 +29,7 @@ function ExamPage() {
     useExamAnswers();
 
   // Restore saved answers from session
-  useMemo(() => {
+  useEffect(() => {
     if (session?.answers) {
       setAnswers(session.answers);
     }
@@ -41,52 +42,74 @@ function ExamPage() {
   const isSubmittingRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = useCallback(async () => {
-    // Prevent multiple simultaneous submissions
-    if (isSubmittingRef.current || !exam || !session) return;
+  const handleSubmit = useCallback(
+    async (isForfeited: boolean = false) => {
+      // Prevent multiple simultaneous submissions
+      if (isSubmittingRef.current || !exam || !session) return;
 
-    isSubmittingRef.current = true;
-    setIsSubmitting(true);
+      isSubmittingRef.current = true;
+      setIsSubmitting(true);
 
-    try {
-      // Dynamically import submission functions to avoid circular dependencies
-      const { createExamSubmission, saveSubmission } = await import(
-        "@/lib/exam/submission"
-      );
+      try {
+        // Dynamically import submission functions to avoid circular dependencies
+        const { createExamSubmission, saveSubmission } = await import(
+          "@/lib/exam/submission"
+        );
 
-      // Get current answers
-      const currentAnswers = answers;
+        // Get current answers (empty if forfeited)
+        const currentAnswers = isForfeited ? {} : answers;
 
-      // Create submission
-      const submissionData = createExamSubmission(
-        exam,
-        session.studentName,
-        session.studentClass,
-        currentAnswers,
-        session.startedAt,
-      );
+        // Create submission
+        const submissionData = createExamSubmission(
+          exam,
+          session.studentName,
+          session.studentClass,
+          currentAnswers,
+          session.startedAt,
+        );
 
-      // Save submission to localStorage
-      saveSubmission(submissionData);
+        // If forfeited, override score to 0
+        if (isForfeited) {
+          submissionData.score = 0;
+          submissionData.earnedPoints = 0;
+          submissionData.passed = false;
+        }
 
-      // Clear session after successful submission
-      clearExamSession();
+        // Save submission to localStorage
+        saveSubmission(submissionData);
 
-      // Navigate to result page
-      await navigate({
-        to: "/result/$submissionId",
-        params: {
-          submissionId: submissionData.id,
-        },
-        replace: true,
-      });
-    } catch (error) {
-      console.error("❌ Submission error:", error);
-      alert("Có lỗi xảy ra khi nộp bài. Vui lòng thử lại.");
-      isSubmittingRef.current = false;
-      setIsSubmitting(false);
-    }
-  }, [exam, session, answers, navigate]);
+        // Clear session after successful submission
+        clearExamSession();
+
+        // Navigate to result page
+        await navigate({
+          to: "/result/$submissionId",
+          params: {
+            submissionId: submissionData.id,
+          },
+          replace: true,
+        });
+      } catch (error) {
+        console.error("❌ Submission error:", error);
+        alert("Có lỗi xảy ra khi nộp bài. Vui lòng thử lại.");
+        isSubmittingRef.current = false;
+        setIsSubmitting(false);
+      }
+    },
+    [exam, session, answers, navigate],
+  );
+
+  // Handle security violation limit reached
+  const handleViolationLimitReached = useCallback(() => {
+    handleSubmit(true); // Submit with forfeit flag
+  }, [handleSubmit]);
+
+  // Security features (tab switch detection, fullscreen mode)
+  const { violationCount } = useExamSecurity({
+    exam,
+    onViolationLimitReached: handleViolationLimitReached,
+    maxViolations: 3,
+  });
 
   // Timer countdown
   const timeRemaining = useExamTimer(exam, session, handleSubmit);
@@ -112,6 +135,8 @@ function ExamPage() {
         totalQuestions={allQuestions.length}
         answeredQuestions={answeredCount}
         timeRemaining={timeRemaining}
+        violationCount={violationCount}
+        maxViolations={3}
       />,
     );
 
@@ -135,6 +160,7 @@ function ExamPage() {
     timeRemaining,
     isSubmitting,
     allQuestions.length,
+    violationCount,
     setHeader,
     setFooter,
     handleSubmit,

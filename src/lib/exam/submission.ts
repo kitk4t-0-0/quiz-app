@@ -29,10 +29,19 @@ export function convertAnswersToSubmission(
     // Use the actual question type from the exam
     const questionType = question?.type || "mcq";
 
+    // Convert standalone boolean to string (shouldn't happen, but handle it)
+    // StudentAnswer expects: string | string[] | Record<string, boolean>
+    let normalizedAnswer: string | string[] | Record<string, boolean>;
+    if (typeof answer === "boolean") {
+      normalizedAnswer = answer.toString();
+    } else {
+      normalizedAnswer = answer;
+    }
+
     return {
       questionId,
       questionType,
-      answer,
+      answer: normalizedAnswer,
       flagged: false,
     };
   });
