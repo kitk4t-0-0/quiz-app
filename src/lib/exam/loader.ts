@@ -1,4 +1,5 @@
 import { type Exam, examSchema } from "@/types/exam";
+import { shuffleExamQuestions, shuffleQuestionOptions } from "./shuffling";
 
 /**
  * Exam metadata for listing
@@ -132,5 +133,34 @@ export function loadExamById(examId: string): Exam | null {
     return null;
   }
 
-  return loadExam(metadata.file);
+  const exam = loadExam(metadata.file);
+  if (!exam) return null;
+
+  // Apply shuffling based on security settings
+  return applyShuffling(exam);
+}
+
+/**
+ * Apply question and option shuffling based on exam security settings
+ */
+function applyShuffling(exam: Exam): Exam {
+  // First, shuffle questions if enabled
+  let shuffledExam = exam.security.shuffleQuestions
+    ? shuffleExamQuestions(exam)
+    : exam;
+
+  // Then, shuffle options for each question if enabled
+  if (exam.security.shuffleOptions) {
+    shuffledExam = {
+      ...shuffledExam,
+      questionSets: shuffledExam.questionSets.map((set) => ({
+        ...set,
+        questions: set.questions.map((question) =>
+          shuffleQuestionOptions(question),
+        ),
+      })),
+    };
+  }
+
+  return shuffledExam;
 }
