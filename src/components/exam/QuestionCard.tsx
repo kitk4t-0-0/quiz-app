@@ -34,7 +34,7 @@ export function QuestionCard({
     <Card className="scroll-mt-24 p-6" id={`question-${question.id}`}>
       {/* Question Header */}
       <div className="mb-4 flex items-start justify-between gap-4">
-        <div className="flex flex-1 items-start gap-3">
+        <div className="flex flex-1 items-center gap-3">
           <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground text-sm">
             {questionNumber}
           </div>
