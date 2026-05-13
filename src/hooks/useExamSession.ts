@@ -87,7 +87,7 @@ export function useAnswerPersistence(
   answers: AnswerState,
 ) {
   useEffect(() => {
-    if (session && Object.keys(answers).length > 0) {
+    if (session) {
       const updatedSession: ExamSession = {
         ...session,
         answers,
