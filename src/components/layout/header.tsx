@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { FileText } from "lucide-react";
 import { Suspense } from "react";
 import { ThemeToggle } from "@/components/ui/theme";
 import { useTheme } from "@/contexts";
@@ -31,11 +32,20 @@ const Header = () => {
           >
             Quiz App
           </Link>
-          {/* Có thể thêm theme toggle hoặc navigation ở đây */}
 
-          <Suspense>
-            <ThemeToggle setTheme={setTheme} themeMode={themeMode} />
-          </Suspense>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/result"
+              className="flex items-center gap-2 text-sm transition-colors hover:text-primary"
+            >
+              <FileText className="h-4 w-4" />
+              <span className="hidden sm:inline">Lịch Sử Bài Thi</span>
+            </Link>
+
+            <Suspense>
+              <ThemeToggle setTheme={setTheme} themeMode={themeMode} />
+            </Suspense>
+          </div>
         </div>
       </div>
     </header>
