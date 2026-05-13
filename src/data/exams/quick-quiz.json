@@ -1,0 +1,131 @@
+{
+  "id": "exam-004",
+  "name": "Kiểm Tra Nhanh - Toán Học",
+  "course": "MATH101",
+  "description": "Bài kiểm tra nhanh 10 phút về các phép tính cơ bản.",
+  "instructions": "Bài kiểm tra ngắn, không có bảo mật. Hoàn thành trong 10 phút.",
+  "security": {
+    "requirePassword": false,
+    "maxAttempts": 5,
+    "shuffleQuestions": false,
+    "shuffleOptions": false,
+    "preventCopyPaste": false,
+    "fullScreenMode": false,
+    "preventTabSwitch": false
+  },
+  "timeConfig": {
+    "duration": 10,
+    "allowLateSubmission": true
+  },
+  "scoringConfig": {
+    "maxScore": 10,
+    "passingScore": 5,
+    "showScoreImmediately": true,
+    "showCorrectAnswers": true,
+    "allowReview": true
+  },
+  "questionSets": [
+    {
+      "id": "set-001",
+      "title": "Phép Tính Cơ Bản",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "short_answer",
+          "question": "5 + 7 = ?",
+          "points": 2,
+          "correctAnswer": "12",
+          "maxLength": 5,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        },
+        {
+          "id": "q2",
+          "type": "short_answer",
+          "question": "15 × 4 = ?",
+          "points": 2,
+          "correctAnswer": "60",
+          "maxLength": 5,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        },
+        {
+          "id": "q3",
+          "type": "short_answer",
+          "question": "100 ÷ 5 = ?",
+          "points": 2,
+          "correctAnswer": "20",
+          "maxLength": 5,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        },
+        {
+          "id": "q4",
+          "type": "mcq",
+          "question": "Căn bậc hai của 144 là?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "10",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "12",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "14",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "16",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false
+        },
+        {
+          "id": "q5",
+          "type": "mcq",
+          "question": "Số nào là số nguyên tố?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "15",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "17",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "18",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "20",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-05-13T09:00:00.000Z",
+  "updatedAt": "2026-05-13T09:00:00.000Z",
+  "isPublished": true,
+  "tags": ["toán-học", "cơ-bản", "nhanh"]
+}

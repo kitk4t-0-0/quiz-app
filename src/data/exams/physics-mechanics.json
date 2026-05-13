@@ -1,0 +1,196 @@
+{
+  "id": "exam-002",
+  "name": "Cơ Học Cơ Bản",
+  "course": "PHY101",
+  "description": "Bài kiểm tra về các khái niệm cơ học Newton, động lực học và năng lượng.",
+  "instructions": "Bài thi này có BẢO MẬT CAO. Bạn phải giữ chế độ toàn màn hình và không được chuyển tab. Vi phạm 3 lần sẽ bị tự động nộp bài với điểm 0. Thời gian: 30 phút.",
+  "security": {
+    "requirePassword": false,
+    "maxAttempts": 2,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "preventCopyPaste": true,
+    "fullScreenMode": false,
+    "preventTabSwitch": true
+  },
+  "timeConfig": {
+    "duration": 30,
+    "allowLateSubmission": false
+  },
+  "scoringConfig": {
+    "maxScore": 10,
+    "passingScore": 6,
+    "showScoreImmediately": true,
+    "showCorrectAnswers": true,
+    "allowReview": true
+  },
+  "questionSets": [
+    {
+      "id": "set-001",
+      "title": "Định Luật Newton",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Định luật Newton thứ nhất phát biểu rằng:",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "Một vật sẽ giữ nguyên trạng thái đứng yên hoặc chuyển động thẳng đều nếu không có lực tác dụng",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Lực bằng khối lượng nhân gia tốc (F = ma)",
+              "isCorrect": false
+            },
+            {
+              "id": "c",
+              "text": "Mọi lực tác dụng đều có phản lực",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "Năng lượng không thể tạo ra hay mất đi",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Định luật Newton thứ nhất (định luật quán tính) nói rằng vật sẽ giữ nguyên trạng thái chuyển động nếu không có ngoại lực."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "Một vật có khối lượng 5 kg chịu lực 20 N. Gia tốc của vật là bao nhiêu?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "2 m/s²",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "4 m/s²",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "10 m/s²",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "100 m/s²",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Theo F = ma, ta có a = F/m = 20/5 = 4 m/s²"
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "Những yếu tố nào ảnh hưởng đến động năng của một vật?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "Khối lượng",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Vận tốc",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "Nhiệt độ",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "Màu sắc",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": true,
+          "explanation": "Động năng KE = ½mv², phụ thuộc vào khối lượng (m) và vận tốc (v)."
+        }
+      ]
+    },
+    {
+      "id": "set-002",
+      "title": "Đúng/Sai - Năng Lượng",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q4",
+          "type": "true_false_set",
+          "question": "Các khái niệm về năng lượng",
+          "context": "Xác định các phát biểu sau về năng lượng là đúng hay sai.",
+          "points": 2,
+          "useWeightedScoring": true,
+          "subQuestions": [
+            {
+              "id": "q4-1",
+              "statement": "Thế năng trọng trường tăng khi độ cao tăng",
+              "correctAnswer": true,
+              "explanation": "PE = mgh, khi h tăng thì thế năng tăng."
+            },
+            {
+              "id": "q4-2",
+              "statement": "Động năng tỉ lệ thuận với bình phương vận tốc",
+              "correctAnswer": true,
+              "explanation": "KE = ½mv², động năng tỉ lệ với v²."
+            },
+            {
+              "id": "q4-3",
+              "statement": "Năng lượng có thể bị mất đi trong hệ kín",
+              "correctAnswer": false,
+              "explanation": "Định luật bảo toàn năng lượng: năng lượng không thể tạo ra hay mất đi, chỉ chuyển đổi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set-003",
+      "title": "Tính Toán",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q5",
+          "type": "short_answer",
+          "question": "Gia tốc trọng trường trên Trái Đất là bao nhiêu m/s²? (làm tròn đến 1 chữ số thập phân)",
+          "points": 1,
+          "correctAnswer": "9.8",
+          "acceptableAnswers": ["9.8", "9.81", "10"],
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0.2
+        },
+        {
+          "id": "q6",
+          "type": "short_answer",
+          "question": "Một vật rơi tự do từ độ cao 20m. Vận tốc khi chạm đất là bao nhiêu m/s? (g=10m/s², làm tròn đến số nguyên)",
+          "points": 1,
+          "correctAnswer": "20",
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 1,
+          "explanation": "v² = 2gh = 2×10×20 = 400, v = 20 m/s"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-05-10T08:00:00.000Z",
+  "updatedAt": "2026-05-10T08:00:00.000Z",
+  "isPublished": true,
+  "tags": ["vật-lý", "cơ-học", "newton", "bảo-mật-cao"]
+}

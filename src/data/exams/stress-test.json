@@ -1,0 +1,237 @@
+{
+  "id": "exam-005",
+  "name": "Bài Kiểm Tra Giao Diện - Nội Dung Dài",
+  "course": "UI-TEST",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "instructions": "Đây là bài kiểm tra để test giao diện với nội dung rất dài. Các câu hỏi có ngữ cảnh dài, câu hỏi dài, và đáp án dài để kiểm tra khả năng hiển thị và cuộn trang. Bạn có 90 phút để hoàn thành. Hãy kiểm tra xem giao diện có bị tràn hay không, các nút có hoạt động tốt không, và trải nghiệm người dùng có mượt mà không.",
+  "security": {
+    "requirePassword": false,
+    "maxAttempts": 10,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "preventCopyPaste": false,
+    "fullScreenMode": false,
+    "preventTabSwitch": false
+  },
+  "timeConfig": {
+    "duration": 90,
+    "allowLateSubmission": true
+  },
+  "scoringConfig": {
+    "maxScore": 10,
+    "passingScore": 5,
+    "showScoreImmediately": true,
+    "showCorrectAnswers": true,
+    "allowReview": true
+  },
+  "questionSets": [
+    {
+      "id": "set-001",
+      "title": "Câu Hỏi Với Ngữ Cảnh Rất Dài",
+      "context": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "shuffleQuestions": true,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Câu hỏi này có nội dung rất dài để kiểm tra khả năng hiển thị. Vậy đáp án đúng là gì?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "Đáp án A: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "Đáp án B: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "Đáp án C: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "Đáp án D: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Đây là giải thích rất dài cho câu hỏi. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "Câu hỏi trắc nghiệm nhiều đáp án đúng với nội dung dài. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Chọn TẤT CẢ các đáp án đúng:",
+          "points": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "Đáp án A là đúng: Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Đáp án B là đúng: Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "Đáp án C là sai: Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "Đáp án D là đúng: Adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
+              "isCorrect": true
+            },
+            {
+              "id": "e",
+              "text": "Đáp án E là sai: At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": true,
+          "explanation": "Giải thích chi tiết: Đáp án A, B và D đều đúng vì chúng mô tả các khái niệm chính xác trong ngữ cảnh của câu hỏi. Đáp án C và E là sai vì chúng không phù hợp với nội dung được mô tả."
+        }
+      ]
+    },
+    {
+      "id": "set-002",
+      "title": "Đúng/Sai Với Nhiều Câu",
+      "context": "Phần này kiểm tra khả năng hiển thị nhiều câu hỏi con trong một câu hỏi true/false set. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q3",
+          "type": "true_false_set",
+          "question": "Xác định các phát biểu sau là đúng hay sai",
+          "context": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.",
+          "points": 2,
+          "useWeightedScoring": true,
+          "subQuestions": [
+            {
+              "id": "q3-1",
+              "statement": "Phát biểu 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+              "correctAnswer": true,
+              "explanation": "Đây là phát biểu đúng vì lorem ipsum dolor sit amet."
+            },
+            {
+              "id": "q3-2",
+              "statement": "Phát biểu 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+              "correctAnswer": false,
+              "explanation": "Đây là phát biểu sai vì ut enim ad minim veniam không chính xác trong ngữ cảnh này."
+            },
+            {
+              "id": "q3-3",
+              "statement": "Phát biểu 3: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+              "correctAnswer": true,
+              "explanation": "Phát biểu này đúng theo định nghĩa chuẩn."
+            },
+            {
+              "id": "q3-4",
+              "statement": "Phát biểu 4: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+              "correctAnswer": false,
+              "explanation": "Sai vì excepteur sint occaecat không áp dụng trong trường hợp này."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set-003",
+      "title": "Câu Hỏi Tự Luận Dài",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q4",
+          "type": "short_answer",
+          "question": "Câu hỏi tự luận với nội dung dài: Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Vậy câu trả lời là gì?",
+          "points": 2,
+          "correctAnswer": "Lorem ipsum",
+          "acceptableAnswers": ["Lorem ipsum", "lorem ipsum", "LOREM IPSUM"],
+          "maxLength": 50,
+          "caseSensitive": false,
+          "isNumeric": false
+        },
+        {
+          "id": "q5",
+          "type": "short_answer",
+          "question": "Một câu hỏi số học đơn giản để cân bằng: 2 + 2 = ?",
+          "points": 1,
+          "correctAnswer": "4",
+          "maxLength": 5,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "set-004",
+      "title": "Thêm Câu Hỏi Để Test Cuộn Trang",
+      "shuffleQuestions": true,
+      "questions": [
+        {
+          "id": "q6",
+          "type": "mcq",
+          "question": "Câu hỏi số 6: Test khả năng cuộn trang khi có nhiều câu hỏi",
+          "points": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Đáp án A",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "Đáp án B",
+              "isCorrect": false
+            },
+            {
+              "id": "c",
+              "text": "Đáp án C",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false
+        },
+        {
+          "id": "q7",
+          "type": "mcq",
+          "question": "Câu hỏi số 7: Tiếp tục test",
+          "points": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Đáp án A",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "Đáp án B",
+              "isCorrect": true
+            }
+          ],
+          "allowMultiple": false
+        },
+        {
+          "id": "q8",
+          "type": "short_answer",
+          "question": "Câu hỏi số 8: Câu hỏi tự luận ngắn",
+          "points": 1,
+          "correctAnswer": "test",
+          "maxLength": 20,
+          "caseSensitive": false,
+          "isNumeric": false
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-05-13T10:00:00.000Z",
+  "updatedAt": "2026-05-13T10:00:00.000Z",
+  "isPublished": true,
+  "tags": ["test", "ui", "stress-test", "lorem-ipsum"]
+}

@@ -1,0 +1,235 @@
+{
+  "id": "exam-003",
+  "name": "Cấu Trúc Dữ Liệu & Thuật Toán Nâng Cao",
+  "course": "CS301",
+  "description": "Bài kiểm tra chuyên sâu về cấu trúc dữ liệu phức tạp, thuật toán tối ưu và phân tích độ phức tạp. Yêu cầu hiểu biết sâu về Big-O notation, cây, đồ thị và dynamic programming.",
+  "instructions": "Đây là bài thi nâng cao dành cho sinh viên năm 3. Một số câu hỏi có ngữ cảnh dài và yêu cầu phân tích kỹ lưỡng. Hãy đọc kỹ từng câu hỏi và giải thích. Bạn có 60 phút để hoàn thành. Không được sử dụng tài liệu tham khảo.",
+  "security": {
+    "requirePassword": false,
+    "maxAttempts": 1,
+    "shuffleQuestions": true,
+    "shuffleOptions": true,
+    "preventCopyPaste": false,
+    "fullScreenMode": false,
+    "preventTabSwitch": false
+  },
+  "timeConfig": {
+    "duration": 60,
+    "allowLateSubmission": false
+  },
+  "scoringConfig": {
+    "maxScore": 10,
+    "passingScore": 7,
+    "showScoreImmediately": false,
+    "showCorrectAnswers": false,
+    "allowReview": false
+  },
+  "questionSets": [
+    {
+      "id": "set-001",
+      "title": "Phân Tích Độ Phức Tạp",
+      "context": "Các câu hỏi sau đây kiểm tra khả năng phân tích độ phức tạp thời gian và không gian của các thuật toán. Hãy xem xét cả trường hợp tốt nhất, trung bình và xấu nhất khi cần thiết.",
+      "shuffleQuestions": true,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "mcq",
+          "question": "Cho đoạn mã sau:\n\n```python\ndef mystery(n):\n    result = 0\n    i = 1\n    while i < n:\n        j = 0\n        while j < i:\n            result += 1\n            j += 1\n        i *= 2\n    return result\n```\n\nĐộ phức tạp thời gian của hàm này là gì?",
+          "points": 3,
+          "options": [
+            {
+              "id": "a",
+              "text": "O(n)",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "O(n log n)",
+              "isCorrect": false
+            },
+            {
+              "id": "c",
+              "text": "O(log n)",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "O(n²)",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Vòng lặp ngoài chạy log(n) lần (i nhân đôi mỗi lần). Vòng lặp trong chạy 1, 2, 4, 8, ... lần. Tổng: 1+2+4+...+n/2 = n-1 = O(n)."
+        },
+        {
+          "id": "q2",
+          "type": "mcq",
+          "question": "Trong một cây AVL (cây tự cân bằng), độ cao tối đa của cây có n nút là bao nhiêu?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "O(log n)",
+              "isCorrect": true
+            },
+            {
+              "id": "b",
+              "text": "O(n)",
+              "isCorrect": false
+            },
+            {
+              "id": "c",
+              "text": "O(√n)",
+              "isCorrect": false
+            },
+            {
+              "id": "d",
+              "text": "O(n log n)",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Cây AVL duy trì cân bằng với độ chênh lệch chiều cao tối đa là 1, đảm bảo độ cao O(log n)."
+        },
+        {
+          "id": "q3",
+          "type": "mcq",
+          "question": "Thuật toán nào sau đây có độ phức tạp thời gian tốt nhất là O(n log n) trong mọi trường hợp (best, average, worst)?",
+          "points": 2,
+          "options": [
+            {
+              "id": "a",
+              "text": "Quick Sort",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "Merge Sort",
+              "isCorrect": true
+            },
+            {
+              "id": "c",
+              "text": "Heap Sort",
+              "isCorrect": true
+            },
+            {
+              "id": "d",
+              "text": "Bubble Sort",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": true,
+          "explanation": "Merge Sort và Heap Sort đều có O(n log n) trong mọi trường hợp. Quick Sort có worst case O(n²)."
+        }
+      ]
+    },
+    {
+      "id": "set-002",
+      "title": "Cấu Trúc Dữ Liệu",
+      "context": "Phần này kiểm tra hiểu biết về các cấu trúc dữ liệu nâng cao như cây B, bảng băm, heap, và đồ thị. Hãy chú ý đến các đặc tính và ứng dụng của từng cấu trúc.",
+      "shuffleQuestions": true,
+      "questions": [
+        {
+          "id": "q4",
+          "type": "true_false_set",
+          "question": "Các phát biểu về Hash Table",
+          "context": "Bảng băm (Hash Table) là một cấu trúc dữ liệu quan trọng trong khoa học máy tính. Xác định các phát biểu sau là đúng hay sai.",
+          "points": 2,
+          "useWeightedScoring": true,
+          "subQuestions": [
+            {
+              "id": "q4-1",
+              "statement": "Trong trường hợp tốt nhất, thao tác tìm kiếm trong hash table có độ phức tạp O(1)",
+              "correctAnswer": true,
+              "explanation": "Với hàm băm tốt và không có collision, tìm kiếm là O(1)."
+            },
+            {
+              "id": "q4-2",
+              "statement": "Separate chaining và open addressing là hai phương pháp xử lý collision",
+              "correctAnswer": true,
+              "explanation": "Đây là hai kỹ thuật phổ biến để xử lý xung đột trong hash table."
+            },
+            {
+              "id": "q4-3",
+              "statement": "Hash table luôn duy trì thứ tự của các phần tử được thêm vào",
+              "correctAnswer": false,
+              "explanation": "Hash table không duy trì thứ tự. Để có thứ tự, cần dùng LinkedHashMap hoặc OrderedDict."
+            },
+            {
+              "id": "q4-4",
+              "statement": "Load factor là tỷ lệ giữa số phần tử và kích thước bảng băm",
+              "correctAnswer": true,
+              "explanation": "Load factor = n/m, với n là số phần tử và m là kích thước bảng."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "type": "mcq",
+          "question": "Trong thuật toán Dijkstra tìm đường đi ngắn nhất, cấu trúc dữ liệu nào được sử dụng để tối ưu hiệu suất?",
+          "points": 1,
+          "options": [
+            {
+              "id": "a",
+              "text": "Stack",
+              "isCorrect": false
+            },
+            {
+              "id": "b",
+              "text": "Queue",
+              "isCorrect": false
+            },
+            {
+              "id": "c",
+              "text": "Priority Queue (Min Heap)",
+              "isCorrect": true
+            },
+            {
+              "id": "d",
+              "text": "Linked List",
+              "isCorrect": false
+            }
+          ],
+          "allowMultiple": false,
+          "explanation": "Dijkstra sử dụng priority queue để luôn chọn đỉnh có khoảng cách nhỏ nhất, giảm độ phức tạp xuống O((V+E) log V)."
+        }
+      ]
+    },
+    {
+      "id": "set-003",
+      "title": "Câu Hỏi Tự Luận",
+      "shuffleQuestions": false,
+      "questions": [
+        {
+          "id": "q6",
+          "type": "short_answer",
+          "question": "Trong cây nhị phân tìm kiếm cân bằng có 1023 nút, độ cao tối thiểu của cây là bao nhiêu? (Độ cao của cây chỉ có root là 0)",
+          "points": 2,
+          "correctAnswer": "9",
+          "acceptableAnswers": ["9", "10"],
+          "maxLength": 5,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0,
+          "explanation": "Cây cân bằng hoàn hảo với n nút có độ cao h = log₂(n+1) - 1 = log₂(1024) - 1 = 10 - 1 = 9"
+        },
+        {
+          "id": "q7",
+          "type": "short_answer",
+          "question": "Số Fibonacci thứ 10 là bao nhiêu? (F(0)=0, F(1)=1, F(2)=1, F(3)=2, ...)",
+          "points": 1,
+          "correctAnswer": "55",
+          "maxLength": 10,
+          "caseSensitive": false,
+          "isNumeric": true,
+          "numericTolerance": 0,
+          "explanation": "Dãy Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55. F(10) = 55"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-05-12T14:30:00.000Z",
+  "updatedAt": "2026-05-12T14:30:00.000Z",
+  "isPublished": true,
+  "tags": ["khoa-học-máy-tính", "thuật-toán", "cấu-trúc-dữ-liệu", "nâng-cao"]
+}
