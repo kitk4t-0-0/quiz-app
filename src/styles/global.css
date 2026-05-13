@@ -44,38 +44,32 @@
     --tracking-wider: 0.05em;
     --tracking-widest: 0.1em;
 
-    --background: 211 14% 97%;
-    --foreground: 240 11% 4%;
+    --background: 220 12% 96%;
+    --foreground: 240 10% 7%;
     --card: 0 0% 100%;
-    --card-foreground: 240 11% 4%;
+    --card-foreground: 240 10% 7%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 11% 4%;
-    --primary: 240 6% 10%;
-    --primary-foreground: 180 0% 98%;
-    --secondary: 214 12% 94%;
-    --secondary-foreground: 240 6% 10%;
-    --muted: 220 16% 95%;
-    --muted-foreground: 240 5% 40%;
-    --accent: 208 16% 93%;
-    --accent-foreground: 240 6% 10%;
-    --destructive: 357 100% 45%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 8% 87%;
-    --input: 217 10% 90%;
-    --ring: 240 6% 64%;
-    --chart-1: 18 100% 48%;
-    --chart-2: 175 100% 29%;
-    --chart-3: 196 72% 23%;
-    --chart-4: 44 100% 50%;
-    --chart-5: 36 100% 50%;
-    --sidebar: 211 12% 96%;
-    --sidebar-foreground: 240 11% 4%;
-    --sidebar-primary: 240 6% 10%;
-    --sidebar-primary-foreground: 180 0% 98%;
-    --sidebar-accent: 211 15% 92%;
-    --sidebar-accent-foreground: 240 6% 10%;
-    --sidebar-border: 217 8% 87%;
-    --sidebar-ring: 240 6% 64%;
+    --popover-foreground: 240 10% 7%;
+    --primary: 244 22% 14%;
+    --primary-foreground: 240 20% 98%;
+    --secondary: 216 14% 93%;
+    --secondary-foreground: 240 10% 14%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 240 5% 46%;
+    --accent: 212 14% 92%;
+    --accent-foreground: 240 10% 14%;
+    --destructive: 354 65% 49%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 216 10% 90%;
+    --input: 216 10% 91%;
+    --ring: 244 22% 40%;
+
+    /* chart colors */
+    --chart-1: 221 83% 46%;
+    --chart-2: 160 72% 34%;
+    --chart-3: 196 70% 36%;
+    --chart-4: 32 90% 48%;
+    --chart-5: 280 60% 52%;
   }
 
   .dark {
@@ -95,8 +89,8 @@
     --accent-foreground: 210 22% 90%;
     --destructive: 0 65% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: hsl(213 28% 26% / 60%);
-    --input: hsl(213 28% 26% / 70%);
+    --border: 213 28% 26% / 60%;
+    --input: 213 28% 26% / 70%;
     --ring: 213 98% 61%;
 
     /* chart colors */
