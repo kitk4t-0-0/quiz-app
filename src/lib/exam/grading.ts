@@ -191,7 +191,9 @@ export function gradeSubmission(
     // Score each question individually
     for (const answer of setAnswers) {
       const question = questionMap.get(answer.questionId);
-      if (!question) continue;
+      if (!question) {
+        continue;
+      }
 
       // Handle True/False Set with weighted scoring
       if (question.type === QuestionType.TRUE_FALSE_SET) {
@@ -210,15 +212,18 @@ export function gradeSubmission(
         if (question.useWeightedScoring) {
           // Weighted scoring: use formula (1/2)^(total - correct)
           const weight = calculateTFWeight(totalSubQuestions, correctCount);
-          rawEarnedPoints += question.points * weight;
+          const earnedForThisQuestion = question.points * weight;
+          rawEarnedPoints += earnedForThisQuestion;
         } else {
           // Non-weighted scoring: divide points equally among sub-questions
           const pointsPerSubQuestion = question.points / totalSubQuestions;
-          rawEarnedPoints += correctCount * pointsPerSubQuestion;
+          const earnedForThisQuestion = correctCount * pointsPerSubQuestion;
+          rawEarnedPoints += earnedForThisQuestion;
         }
       } else {
         // Standard scoring for MCQ and Short Answer
-        if (checkAnswer(question, answer)) {
+        const isCorrect = checkAnswer(question, answer);
+        if (isCorrect) {
           rawEarnedPoints += question.points;
         }
       }
