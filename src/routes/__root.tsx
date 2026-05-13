@@ -3,6 +3,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/sonner";
 import { LayoutProvider, ThemeProvider } from "@/contexts";
 import appCss from "@/styles/global.css?url";
 
@@ -51,7 +52,19 @@ function ShellComponent({ children }: { children: React.ReactNode }) {
 
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         {children}
-
+        <Toaster
+          richColors
+          closeButton
+          position="top-center"
+          toastOptions={{
+            style: {
+              fontSize: "16px",
+              padding: "16px",
+              minHeight: "80px",
+            },
+            className: "text-base",
+          }}
+        />
         <Scripts />
       </body>
     </html>
