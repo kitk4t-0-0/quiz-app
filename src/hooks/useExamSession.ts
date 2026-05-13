@@ -27,7 +27,27 @@ export function useExamSession(examId: string): UseExamSessionResult {
 
   useEffect(() => {
     try {
-      const examData = loadExamById(examId);
+      // Validate session first
+      const examSession = getExamSession(examId);
+      if (!examSession) {
+        setError(
+          "Phiên làm bài không hợp lệ. Vui lòng bắt đầu lại từ trang chủ.",
+        );
+        setIsLoading(false);
+        return;
+      }
+
+      // Generate or retrieve shuffle seed from session
+      let shuffleSeed = examSession.shuffleSeed;
+      if (!shuffleSeed) {
+        // Generate a seed based on session start time for consistency
+        shuffleSeed = new Date(examSession.startedAt).getTime();
+        examSession.shuffleSeed = shuffleSeed;
+        saveExamSession(examSession);
+      }
+
+      // Load exam with the seed for deterministic shuffling
+      const examData = loadExamById(examId, shuffleSeed);
 
       if (!examData) {
         setError("Không tìm thấy bài thi. Vui lòng quay lại trang chủ.");
@@ -41,16 +61,6 @@ export function useExamSession(examId: string): UseExamSessionResult {
         setError(
           availabilityCheck.reason ||
             "Bài thi không khả dụng. Vui lòng liên hệ giáo viên.",
-        );
-        setIsLoading(false);
-        return;
-      }
-
-      // Validate session
-      const examSession = getExamSession(examId);
-      if (!examSession) {
-        setError(
-          "Phiên làm bài không hợp lệ. Vui lòng bắt đầu lại từ trang chủ.",
         );
         setIsLoading(false);
         return;

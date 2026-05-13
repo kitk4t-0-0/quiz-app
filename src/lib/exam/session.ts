@@ -12,6 +12,7 @@ export interface ExamSession {
   examId: string;
   startedAt: string; // ISO timestamp
   answers?: AnswerState;
+  shuffleSeed?: number; // Seed for deterministic shuffling
 }
 
 /**

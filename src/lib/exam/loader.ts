@@ -123,8 +123,9 @@ export function loadExam(filename: string): Exam | null {
 
 /**
  * Load exam by ID (synchronous, uses bundled data)
+ * Optionally accepts a seed for deterministic shuffling
  */
-export function loadExamById(examId: string): Exam | null {
+export function loadExamById(examId: string, seed?: number): Exam | null {
   initializeExamCache();
   const metadata = metadataCache.find((exam) => exam.id === examId);
 
@@ -137,16 +138,17 @@ export function loadExamById(examId: string): Exam | null {
   if (!exam) return null;
 
   // Apply shuffling based on security settings
-  return applyShuffling(exam);
+  return applyShuffling(exam, seed);
 }
 
 /**
  * Apply question and option shuffling based on exam security settings
+ * Uses seed for deterministic shuffling
  */
-function applyShuffling(exam: Exam): Exam {
+function applyShuffling(exam: Exam, seed?: number): Exam {
   // First, shuffle questions if enabled
   let shuffledExam = exam.security.shuffleQuestions
-    ? shuffleExamQuestions(exam)
+    ? shuffleExamQuestions(exam, seed)
     : exam;
 
   // Then, shuffle options for each question if enabled
@@ -155,8 +157,11 @@ function applyShuffling(exam: Exam): Exam {
       ...shuffledExam,
       questionSets: shuffledExam.questionSets.map((set) => ({
         ...set,
-        questions: set.questions.map((question) =>
-          shuffleQuestionOptions(question),
+        questions: set.questions.map((question, qIndex) =>
+          shuffleQuestionOptions(
+            question,
+            seed ? seed + qIndex + 1000 : undefined,
+          ),
         ),
       })),
     };
