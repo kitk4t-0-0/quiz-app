@@ -16,6 +16,8 @@ interface ExamHeaderProps {
   totalQuestions: number;
   answeredQuestions: number;
   timeRemaining?: number; // in seconds
+  violationCount?: number; // security violations
+  maxViolations?: number; // maximum allowed violations
 }
 
 export function ExamHeader({
@@ -24,12 +26,16 @@ export function ExamHeader({
   totalQuestions,
   answeredQuestions,
   timeRemaining,
+  violationCount = 0,
+  maxViolations = 3,
 }: ExamHeaderProps) {
   const progress =
     totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
   const isLowTime =
     timeRemaining !== undefined &&
     timeRemaining < LOW_TIME_WARNING_THRESHOLD_SECONDS;
+  const hasViolations = violationCount > 0;
+  const remainingViolations = maxViolations - violationCount;
 
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / SECONDS_PER_HOUR);
@@ -75,7 +81,7 @@ export function ExamHeader({
           </div>
 
           {/* Progress */}
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">
                 Đã trả lời: {answeredQuestions}/{totalQuestions} câu
@@ -83,7 +89,7 @@ export function ExamHeader({
               <Badge variant="secondary">{Math.round(progress)}%</Badge>
             </div>
             <Progress value={progress} className="h-2" />
-          </div>
+          </div> */}
 
           {/* Low time warning */}
           {isLowTime && (
@@ -91,6 +97,24 @@ export function ExamHeader({
               <AlertCircle className="h-4 w-4" />
               <AlertDescription className="text-sm">
                 Thời gian sắp hết! Vui lòng kiểm tra và nộp bài.
+              </AlertDescription>
+            </Alert>
+          )}
+
+          {/* Security violation warning */}
+          {hasViolations && (
+            <Alert
+              variant={remainingViolations === 0 ? "destructive" : "default"}
+              className="flex items-center gap-2 border-orange-500 bg-orange-50 py-2 dark:bg-orange-950 [&>svg+div]:translate-y-0 [&>svg]:static [&>svg~*]:pl-0"
+            >
+              <AlertCircle className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+              <AlertDescription className="text-orange-800 text-sm dark:text-orange-200">
+                Cảnh báo vi phạm: {violationCount}/{maxViolations} lần
+                {remainingViolations > 0 && (
+                  <span className="ml-2 font-semibold">
+                    (Còn {remainingViolations} lần)
+                  </span>
+                )}
               </AlertDescription>
             </Alert>
           )}

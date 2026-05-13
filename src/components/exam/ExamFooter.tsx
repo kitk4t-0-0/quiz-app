@@ -35,7 +35,7 @@ export function ExamFooter({
 
             <Button
               size="lg"
-              onClick={onSubmit}
+              onClick={() => onSubmit()}
               disabled={isSubmitting}
               className="min-w-[200px]"
             >
