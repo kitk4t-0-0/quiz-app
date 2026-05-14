@@ -3,6 +3,7 @@ import { FileText } from "lucide-react";
 import { Suspense } from "react";
 import { ThemeToggle } from "@/components/ui/theme";
 import { useTheme } from "@/contexts";
+import { Separator } from "../ui/separator";
 
 const Header = () => {
   const { setTheme, themeMode } = useTheme();
@@ -41,6 +42,8 @@ const Header = () => {
               <FileText className="h-4 w-4" />
               <span className="hidden sm:inline">Lịch Sử Bài Thi</span>
             </Link>
+
+            <Separator orientation="vertical" />
 
             <Suspense>
               <ThemeToggle setTheme={setTheme} themeMode={themeMode} />
