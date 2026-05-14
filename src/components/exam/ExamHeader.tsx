@@ -1,7 +1,5 @@
 import { AlertCircle, Clock } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 
 /**
  * Constants for exam timer warnings
@@ -29,7 +27,7 @@ export function ExamHeader({
   violationCount = 0,
   maxViolations = 3,
 }: ExamHeaderProps) {
-  const progress =
+  const _progress =
     totalQuestions > 0 ? (answeredQuestions / totalQuestions) * 100 : 0;
   const isLowTime =
     timeRemaining !== undefined &&
