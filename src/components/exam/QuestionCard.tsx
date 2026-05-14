@@ -64,7 +64,7 @@ export function QuestionCard({
 
       {/* Question Text */}
       <div className="mb-4 pl-11">
-        <p className="font-medium text-base leading-relaxed">
+        <p className="whitespace-pre-line font-medium text-base leading-relaxed">
           {question.question}
         </p>
       </div>
