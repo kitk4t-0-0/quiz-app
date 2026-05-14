@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from "./routes/__root";
 import { Route as publicLayoutRouteImport } from "./routes/(public)/layout";
 import { Route as publicIndexRouteImport } from "./routes/(public)/index";
 import { Route as publicSplatRouteImport } from "./routes/(public)/$$";
-import { Route as publicResultSubmissionIdRouteImport } from "./routes/(public)/result.$submissionId";
+import { Route as publicResultIndexRouteImport } from "./routes/(public)/result/index";
+import { Route as publicDocxtohtmlIndexRouteImport } from "./routes/(public)/docxtohtml/index";
+import { Route as publicResultSubmissionIdRouteImport } from "./routes/(public)/result/$submissionId";
 import { Route as publicExamExamIdRouteImport } from "./routes/(public)/exam/$examId";
 
 const publicLayoutRoute = publicLayoutRouteImport.update({
@@ -27,6 +29,16 @@ const publicIndexRoute = publicIndexRouteImport.update({
 const publicSplatRoute = publicSplatRouteImport.update({
   id: "/$$",
   path: "/$$",
+  getParentRoute: () => publicLayoutRoute,
+} as any);
+const publicResultIndexRoute = publicResultIndexRouteImport.update({
+  id: "/result/",
+  path: "/result/",
+  getParentRoute: () => publicLayoutRoute,
+} as any);
+const publicDocxtohtmlIndexRoute = publicDocxtohtmlIndexRouteImport.update({
+  id: "/docxtohtml/",
+  path: "/docxtohtml/",
   getParentRoute: () => publicLayoutRoute,
 } as any);
 const publicResultSubmissionIdRoute =
@@ -46,12 +58,16 @@ export interface FileRoutesByFullPath {
   "/": typeof publicIndexRoute;
   "/exam/$examId": typeof publicExamExamIdRoute;
   "/result/$submissionId": typeof publicResultSubmissionIdRoute;
+  "/docxtohtml/": typeof publicDocxtohtmlIndexRoute;
+  "/result/": typeof publicResultIndexRoute;
 }
 export interface FileRoutesByTo {
   "/$$": typeof publicSplatRoute;
   "/": typeof publicIndexRoute;
   "/exam/$examId": typeof publicExamExamIdRoute;
   "/result/$submissionId": typeof publicResultSubmissionIdRoute;
+  "/docxtohtml": typeof publicDocxtohtmlIndexRoute;
+  "/result": typeof publicResultIndexRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
@@ -60,19 +76,35 @@ export interface FileRoutesById {
   "/(public)/": typeof publicIndexRoute;
   "/(public)/exam/$examId": typeof publicExamExamIdRoute;
   "/(public)/result/$submissionId": typeof publicResultSubmissionIdRoute;
+  "/(public)/docxtohtml/": typeof publicDocxtohtmlIndexRoute;
+  "/(public)/result/": typeof publicResultIndexRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/$$" | "/" | "/exam/$examId" | "/result/$submissionId";
+  fullPaths:
+    | "/$$"
+    | "/"
+    | "/exam/$examId"
+    | "/result/$submissionId"
+    | "/docxtohtml/"
+    | "/result/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/$$" | "/" | "/exam/$examId" | "/result/$submissionId";
+  to:
+    | "/$$"
+    | "/"
+    | "/exam/$examId"
+    | "/result/$submissionId"
+    | "/docxtohtml"
+    | "/result";
   id:
     | "__root__"
     | "/(public)"
     | "/(public)/$$"
     | "/(public)/"
     | "/(public)/exam/$examId"
-    | "/(public)/result/$submissionId";
+    | "/(public)/result/$submissionId"
+    | "/(public)/docxtohtml/"
+    | "/(public)/result/";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
@@ -102,6 +134,20 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof publicSplatRouteImport;
       parentRoute: typeof publicLayoutRoute;
     };
+    "/(public)/result/": {
+      id: "/(public)/result/";
+      path: "/result";
+      fullPath: "/result/";
+      preLoaderRoute: typeof publicResultIndexRouteImport;
+      parentRoute: typeof publicLayoutRoute;
+    };
+    "/(public)/docxtohtml/": {
+      id: "/(public)/docxtohtml/";
+      path: "/docxtohtml";
+      fullPath: "/docxtohtml/";
+      preLoaderRoute: typeof publicDocxtohtmlIndexRouteImport;
+      parentRoute: typeof publicLayoutRoute;
+    };
     "/(public)/result/$submissionId": {
       id: "/(public)/result/$submissionId";
       path: "/result/$submissionId";
@@ -124,6 +170,8 @@ interface publicLayoutRouteChildren {
   publicIndexRoute: typeof publicIndexRoute;
   publicExamExamIdRoute: typeof publicExamExamIdRoute;
   publicResultSubmissionIdRoute: typeof publicResultSubmissionIdRoute;
+  publicDocxtohtmlIndexRoute: typeof publicDocxtohtmlIndexRoute;
+  publicResultIndexRoute: typeof publicResultIndexRoute;
 }
 
 const publicLayoutRouteChildren: publicLayoutRouteChildren = {
@@ -131,6 +179,8 @@ const publicLayoutRouteChildren: publicLayoutRouteChildren = {
   publicIndexRoute: publicIndexRoute,
   publicExamExamIdRoute: publicExamExamIdRoute,
   publicResultSubmissionIdRoute: publicResultSubmissionIdRoute,
+  publicDocxtohtmlIndexRoute: publicDocxtohtmlIndexRoute,
+  publicResultIndexRoute: publicResultIndexRoute,
 };
 
 const publicLayoutRouteWithChildren = publicLayoutRoute._addFileChildren(

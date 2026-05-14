@@ -75,8 +75,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "biome check --write",
-      "biome format --write"
+      "biome check --write --no-errors-on-unmatched",
+      "biome format --write --no-errors-on-unmatched"
     ]
   }
 }
